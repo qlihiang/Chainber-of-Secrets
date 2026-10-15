@@ -22,17 +22,6 @@ const PRODUCTS = [
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
     stripeLink: "https://buy.stripe.com/28EaEY0f5f0V62o0hu4AU01",
   },
-  {
-    id: "rosette-bracelet",
-    name: "Rosette Chainmaille Bracelet",
-    price: null,
-    image: "assets/rosette-bracelet.jpg",
-    badge: "New",
-    summary: "Woven silver rosettes linked by open rings.",
-    description: "Little woven chainmaille rosettes alternate with smooth open rings around the wrist, catching the light from every side.",
-    details: ["Handmade chainmaille", "Woven rosette links", "Silver-tone finish"],
-    stripeLink: "",
-  },
 ];
 
 function formatPrice(amount) {
