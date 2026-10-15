@@ -554,11 +554,13 @@ body {
   100% { transform: skewX(-3deg) translateX(5px); }
 }
 .intro, .story-body { position: relative; z-index: 4; }
-.intro { padding-top: 24px; }
+/* Heading sits just below the middle vine tips, so they barely brush it.
+   The vine image scales with the viewport, so the gap scales with it. */
+.intro { padding-top: calc(max(104vw, 1660px) * 0.068 - 104px); }
 @media (max-width: 860px) {
   .forest-edge { height: 220px; margin-top: -80px; margin-bottom: -170px; }
   .forest-edge::before, .forest-edge::after { height: 340px; background-size: 600px auto; }
-  .intro { padding-top: 16px; }
+  .intro { padding-top: 34px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .forest-edge::before, .forest-edge::after { animation: none; }
