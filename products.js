@@ -3,14 +3,14 @@
 // `stripeLink` is the product's Stripe payment link; leave it empty until it exists.
 const PRODUCTS = [
   {
-    id: "rose-quartz-heart",
-    name: "Rose Quartz Heart Necklace",
-    price: 128,
+    id: "the-protector",
+    name: "The Protector Necklace",
+    price: 138,
     image: "assets/rose-quartz-heart.jpg",
-    summary: "Layered chainmaille with a rose quartz heart.",
-    description: "A woven chainmaille collar draped with curb chain, finished with a rose quartz heart, pink crystal drops and silver spikes.",
-    details: ["Handmade chainmaille", "Rose quartz heart pendant", "Pink crystal and bead accents"],
-    stripeLink: "https://buy.stripe.com/eVq3cwe5V3idduQc0c4AU00",
+    summary: "Rose quartz heart, pearls and Swarovski crystal on woven chainmaille.",
+    description: "A woven chainmaille collar draped with chain, finished with a rose quartz heart, pearls and Swarovski crystal, with stainless steel hardware.",
+    details: ["Rose quartz heart", "Pearls", "Swarovski crystal", "Stainless steel hardware"],
+    stripeLink: "https://buy.stripe.com/9B63cw1j97yt4Yk7JW4AU02",
   },
   {
     id: "the-queen",
