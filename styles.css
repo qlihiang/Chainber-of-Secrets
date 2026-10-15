@@ -514,30 +514,38 @@ body {
 }
 .footer-brand img { opacity: 0.9; }
 
-/* Hanging vines: soft, uneven strands draping from the canopy */
+/* Hanging vines: one asymmetric scene. Long cascades frame the intro
+   from the left and right; only short wisps hang over the middle. */
 .forest-edge {
   position: relative;
-  height: 190px;
-  margin-bottom: -50px;
+  height: 400px;
+  margin-top: -120px;
+  margin-bottom: -280px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 3;
+  overflow-x: clip;
 }
 .forest-edge::before {
   content: "";
   position: absolute;
-  inset: 0 0 -50px 0;
-  background: url("assets/vines.svg") top center / 1600px 240px repeat-x;
+  inset: 0 0 auto 0;
+  height: 520px;
+  background: url("assets/vines.svg") top center / max(100%, 1600px) auto no-repeat;
   transform-origin: top center;
   animation: sway 10s ease-in-out infinite alternate;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px);
+          mask-image: linear-gradient(180deg, transparent 0, #000 70px);
 }
 @keyframes sway {
-  from { transform: skewX(-1deg); }
-  to   { transform: skewX(1deg); }
+  from { transform: skewX(-0.8deg); }
+  to   { transform: skewX(0.8deg); }
 }
-.intro, .story-body { position: relative; z-index: 1; }
+.intro, .story-body { position: relative; z-index: 4; }
+.intro { padding-top: 120px; }
 @media (max-width: 860px) {
-  .forest-edge { height: 130px; margin-bottom: -30px; }
-  .forest-edge::before { background-size: 1100px 165px; }
+  .forest-edge { height: 220px; margin-top: -80px; margin-bottom: -140px; }
+  .forest-edge::before { height: 320px; background-size: 600px auto; }
+  .intro { padding-top: 70px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .forest-edge::before { animation: none; }
@@ -638,15 +646,9 @@ body {
           mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent);
   padding-bottom: 40px;
 }
-.forest-edge { margin-top: -120px; z-index: 3; }
 @media (max-width: 860px) {
   .hero, .story-hero {
     -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
             mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
   }
-  .forest-edge { margin-top: -80px; }
-}
-.forest-edge::before {
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px);
-          mask-image: linear-gradient(180deg, transparent 0, #000 70px);
 }
