@@ -514,12 +514,33 @@ body {
 }
 .footer-brand img { opacity: 0.9; }
 
-/* Blossom canopy edge where the wood meets the page */
+/* Hanging vines: soft, uneven strands draping from the canopy */
 .forest-edge {
-  height: 56px;
-  margin-bottom: 64px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%2390416f'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%238f9a88' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%238f9a88' transform='rotate(-30 32 50)'/%3E%3Ccircle cx='100' cy='52' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='100' cy='52' r='1.2' fill='%233f1a34'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23cab5ba' transform='rotate(-20 163 46)'/%3E%3Ccircle cx='210' cy='43' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='210' cy='43' r='1.2' fill='%233f1a34'/%3E%3C/svg%3E")
-    repeat-x top / 240px 56px;
+  position: relative;
+  height: 190px;
+  margin-bottom: -50px;
+  pointer-events: none;
+  z-index: 0;
+}
+.forest-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -50px 0;
+  background: url("assets/vines.svg") top center / 1600px 240px repeat-x;
+  transform-origin: top center;
+  animation: sway 10s ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from { transform: skewX(-1deg); }
+  to   { transform: skewX(1deg); }
+}
+.intro, .story-body { position: relative; z-index: 1; }
+@media (max-width: 860px) {
+  .forest-edge { height: 130px; margin-bottom: -30px; }
+  .forest-edge::before { background-size: 1100px 165px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .forest-edge::before { animation: none; }
 }
 
 /* Intro: soft light falling into the clearing */
@@ -609,4 +630,23 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .enchanted::before, .hero-logo, .story-hero-art { animation: none; }
+}
+
+/* Canopy dissolves into the page; vines emerge from the mist */
+.hero, .story-hero {
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent);
+          mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent);
+  padding-bottom: 40px;
+}
+.forest-edge { margin-top: -120px; z-index: 3; }
+@media (max-width: 860px) {
+  .hero, .story-hero {
+    -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
+            mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
+  }
+  .forest-edge { margin-top: -80px; }
+}
+.forest-edge::before {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px);
+          mask-image: linear-gradient(180deg, transparent 0, #000 70px);
 }
