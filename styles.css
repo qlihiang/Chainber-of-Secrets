@@ -421,3 +421,189 @@ h1 em, h2 em { color: var(--plum); }
   .intro { padding: 0 16px; margin-bottom: 64px; }
   .intro p { font-size: 1.02rem; }
 }
+
+/* ------------------------------------------------------------------
+   Enchanted forest theme: dusk-lit moss greens, beams of light and
+   drifting fireflies, layered under the plum and mauve brand colors.
+   ------------------------------------------------------------------ */
+:root {
+  --forest-deep: #141c17;
+  --forest: #1f2b22;
+  --moss: #3b4a35;
+  --fern: #6f8461;
+  --sunlight: #f4e6c4;
+  --mist: #eef0e8;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% 0%, rgba(111, 132, 97, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 0% 40%, rgba(202, 181, 186, 0.18), transparent 60%),
+    var(--bg);
+}
+
+/* Shared enchanted layer: light shafts + firefly canvas */
+.enchanted { position: relative; isolation: isolate; overflow: hidden; }
+.enchanted > .fireflies {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1;
+}
+.enchanted::before {
+  content: "";
+  position: absolute; inset: -20% -10% 0 -10%;
+  z-index: 0;
+  background:
+    linear-gradient(115deg, transparent 38%, rgba(244, 230, 196, 0.16) 42%, transparent 47%),
+    linear-gradient(110deg, transparent 52%, rgba(244, 230, 196, 0.10) 55%, transparent 60%),
+    linear-gradient(120deg, transparent 63%, rgba(244, 230, 196, 0.13) 66%, transparent 71%),
+    linear-gradient(105deg, transparent 22%, rgba(244, 230, 196, 0.07) 25%, transparent 30%);
+  filter: blur(6px);
+  animation: shafts 14s ease-in-out infinite alternate;
+}
+@keyframes shafts {
+  from { opacity: 0.65; transform: translateX(-2%); }
+  to   { opacity: 1;    transform: translateX(2%); }
+}
+.enchanted > *:not(.fireflies) { position: relative; z-index: 2; }
+
+/* Header melts into the canopy */
+.site-header {
+  background: rgba(20, 28, 23, 0.86);
+  border-bottom: 1px solid rgba(244, 230, 196, 0.08);
+  color: var(--mist);
+}
+.site-header .wordmark { color: #e7c3d6; }
+.nav a:hover { color: #e7c3d6; }
+.menu-toggle span { background: var(--mist); }
+@media (max-width: 860px) {
+  .nav-left { background: var(--forest-deep); border-bottom-color: rgba(244, 230, 196, 0.08); }
+}
+
+/* Hero: a clearing at dusk, the arch glowing like a doorway */
+.hero {
+  background:
+    radial-gradient(520px 460px at 72% 52%, rgba(244, 230, 196, 0.28), transparent 70%),
+    radial-gradient(900px 600px at 70% 120%, rgba(144, 65, 111, 0.35), transparent 70%),
+    linear-gradient(180deg, var(--forest-deep) 0%, var(--forest) 55%, var(--moss) 100%);
+  color: var(--mist);
+  margin-bottom: 0;
+}
+.hero .eyebrow { color: #e7c3d6; }
+.hero h1 { color: #fbf3ea; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35); }
+.hero h1 em { color: #e7c3d6; }
+.hero .lede { color: rgba(238, 240, 232, 0.78); }
+.hero .btn { box-shadow: 0 0 0 1px rgba(244, 230, 196, 0.25), 0 10px 30px rgba(144, 65, 111, 0.45); }
+.hero-logo {
+  filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 18px rgba(244, 230, 196, 0.55));
+  animation: breathe 6s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 14px rgba(244, 230, 196, 0.45)); }
+  50%      { filter: brightness(2.25) saturate(0.7) drop-shadow(0 0 26px rgba(244, 230, 196, 0.7)); }
+}
+
+/* Mossy edge where the forest meets the page */
+.forest-edge {
+  height: 56px;
+  margin-bottom: 64px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%233b4a35'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%236f8461' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%236f8461' transform='rotate(-30 32 50)'/%3E%3Cellipse cx='100' cy='52' rx='4' ry='2.4' fill='%236f8461' transform='rotate(25 100 52)'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%2390416f' opacity='.7' transform='rotate(-20 163 46)'/%3E%3Cellipse cx='210' cy='43' rx='4' ry='2.4' fill='%236f8461' transform='rotate(30 210 43)'/%3E%3C/svg%3E")
+    repeat-x top / 240px 56px;
+}
+
+/* Intro: soft light falling into the clearing */
+.intro { position: relative; }
+.intro::before {
+  content: "";
+  position: absolute; left: 50%; top: -40px; width: min(520px, 100%); height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(244, 230, 196, 0.55), transparent);
+  z-index: -1;
+}
+.intro h2::after {
+  content: "✦";
+  display: block;
+  font-size: 0.9rem;
+  color: var(--plum);
+  margin-top: 14px;
+  letter-spacing: 0;
+}
+
+/* Products sit in gothic window frames */
+.product-image {
+  border-radius: 50% 50% var(--radius) var(--radius) / 22% 22% var(--radius) var(--radius);
+  box-shadow: 0 0 0 1px rgba(59, 74, 53, 0.18), 0 18px 40px -18px rgba(31, 43, 34, 0.55);
+}
+.pdp-image {
+  border-radius: 50% 50% var(--radius) var(--radius) / 16% 16% var(--radius) var(--radius);
+  box-shadow: 0 0 0 1px rgba(59, 74, 53, 0.18), 0 24px 60px -24px rgba(31, 43, 34, 0.6);
+}
+.product-image::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(244, 230, 196, 0.18), transparent 35%);
+  pointer-events: none;
+}
+
+/* Our story card: mauve under a canopy */
+.story { box-shadow: 0 30px 60px -30px rgba(31, 43, 34, 0.5); }
+
+/* Newsletter and footer: back into the woods */
+.newsletter {
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(144, 65, 111, 0.35), transparent 70%),
+    linear-gradient(180deg, var(--moss), var(--forest-deep));
+  color: var(--mist);
+}
+.newsletter h2 { color: #fbf3ea; }
+.newsletter p { color: rgba(238, 240, 232, 0.75); }
+.newsletter input { border-color: rgba(244, 230, 196, 0.4); }
+
+.site-footer {
+  max-width: none;
+  background: var(--forest-deep);
+  color: rgba(238, 240, 232, 0.7);
+  padding-left: max(40px, calc((100% - 1160px) / 2));
+  padding-right: max(40px, calc((100% - 1160px) / 2));
+}
+.footer-cols p, .footer-cols a, .copyright { color: rgba(238, 240, 232, 0.6); }
+.footer-cols a:hover { color: #e7c3d6; }
+.footer-cols h3 { color: #e7c3d6; }
+.footer-brand img { filter: brightness(2.1) saturate(0.7); }
+@media (max-width: 860px) {
+  .site-footer { padding-left: 16px; padding-right: 16px; }
+}
+
+/* Our Story page hero joins the forest */
+.story-hero {
+  background:
+    radial-gradient(460px 420px at 78% 60%, rgba(244, 230, 196, 0.25), transparent 70%),
+    linear-gradient(180deg, var(--forest-deep), var(--moss));
+  color: var(--mist);
+  margin-bottom: 0;
+}
+.story-hero h1 { color: #fbf3ea; }
+.story-welcome { color: #e7c3d6; }
+.story-hero-art {
+  object-fit: contain;
+  max-width: 320px;
+  justify-self: center;
+  align-self: center;
+  padding: 40px 0;
+  filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 18px rgba(244, 230, 196, 0.55));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enchanted::before, .hero-logo { animation: none; }
+}
+
+/* Keep the arch windows at a graceful size and centered */
+#collection .section-head { justify-content: center; }
+#collection .product-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+  justify-content: center;
+  gap: 40px 32px;
+}
+@media (max-width: 860px) {
+  #collection .product-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
+}
