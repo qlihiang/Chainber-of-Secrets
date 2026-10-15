@@ -7,7 +7,6 @@ const PRODUCTS = [
     name: "Rose Quartz Heart Necklace",
     price: 128,
     image: "assets/rose-quartz-heart.jpg",
-    badge: "New",
     summary: "Layered chainmaille with a rose quartz heart.",
     description: "A woven chainmaille collar draped with curb chain, finished with a rose quartz heart, pink crystal drops and silver spikes.",
     details: ["Handmade chainmaille", "Rose quartz heart pendant", "Pink crystal and bead accents"],
@@ -23,8 +22,19 @@ const PRODUCTS = [
     details: ["Handmade chain and links", "Silver bee charm", "Natural stone chips and beads"],
     stripeLink: "",
   },
+  {
+    id: "rosette-bracelet",
+    name: "Rosette Chainmaille Bracelet",
+    price: null,
+    image: "assets/rosette-bracelet.jpg",
+    badge: "New",
+    summary: "Woven silver rosettes linked by open rings.",
+    description: "Little woven chainmaille rosettes alternate with smooth open rings around the wrist, catching the light from every side.",
+    details: ["Handmade chainmaille", "Woven rosette links", "Silver-tone finish"],
+    stripeLink: "",
+  },
 ];
 
 function formatPrice(amount) {
-  return `$${amount}`;
+  return amount == null ? "Price coming soon" : `$${amount}`;
 }
