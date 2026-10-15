@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chainber of Secrets</title>
+  <meta name="description" content="Everyday chains and charms, made to be layered.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $50 · Free gift wrap, always</div>
+
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav nav-left" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#bestsellers">Bestsellers</a>
+      <a href="#story">Our Story</a>
+    </nav>
+    <a href="#" class="logo">Chainber <em>of</em> Secrets</a>
+    <nav class="nav nav-right" aria-label="Account">
+      <a href="#">Search</a>
+      <a href="#">Account</a>
+      <button class="cart-btn">Bag (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">New collection</p>
+        <h1>Little secrets,<br>worn every day.</h1>
+        <p class="lede">Delicate chains and charms designed to be layered, stacked and never taken off.</p>
+        <a href="#bestsellers" class="btn">Shop now</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <circle cx="200" cy="200" r="180" fill="var(--blush)"/>
+          <path d="M80 120 Q200 330 320 120" fill="none" stroke="var(--gold)" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>
+          <path d="M110 120 Q200 280 290 120" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="1 8" stroke-linecap="round"/>
+          <circle cx="200" cy="246" r="16" fill="var(--gold)"/>
+          <path d="M200 296 l10 18 -10 18 -10 -18z" fill="var(--gold)"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="categories" id="shop">
+      <a href="#" class="category" style="--tile: var(--sage)"><span>Necklaces</span></a>
+      <a href="#" class="category" style="--tile: var(--lavender)"><span>Bracelets</span></a>
+      <a href="#" class="category" style="--tile: var(--butter)"><span>Charms</span></a>
+      <a href="#" class="category" style="--tile: var(--sky)"><span>Gift Sets</span></a>
+    </section>
+
+    <section class="products" id="bestsellers">
+      <div class="section-head">
+        <h2>Bestsellers</h2>
+        <a href="#">Shop all →</a>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-art" aria-hidden="true"></div>
+      <div class="story-text">
+        <p class="eyebrow">Our story</p>
+        <h2>Made for the moments you keep to yourself.</h2>
+        <p>Every piece is made from recycled sterling silver and 14k gold vermeil, built to be worn in the shower, at the gym and everywhere in between.</p>
+        <a href="#" class="btn btn-outline">Learn more</a>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h2>Let us tell you a secret</h2>
+      <p>Join the list for early access to drops and 10% off your first order.</p>
+      <form id="signup">
+        <input type="email" placeholder="Email address" aria-label="Email address" required>
+        <button class="btn" type="submit">Sign up</button>
+      </form>
+      <p class="form-msg" id="form-msg" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-cols">
+      <div>
+        <a href="#" class="logo">Chainber <em>of</em> Secrets</a>
+        <p>Everyday chains and charms.</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Necklaces</a><a href="#">Bracelets</a><a href="#">Charms</a><a href="#">Gift Sets</a>
+      </div>
+      <div>
+        <h3>Help</h3>
+        <a href="#">Shipping</a><a href="#">Returns</a><a href="#">Jewelry Care</a><a href="#">Contact</a>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Pinterest</a>
+      </div>
+    </div>
+    <p class="copyright">© <span id="year"></span> Chainber of Secrets</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
