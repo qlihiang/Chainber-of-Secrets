@@ -428,9 +428,9 @@ h1 em, h2 em { color: var(--plum); }
    muted sage in the vines. Plum and mauve remain the brand colors.
    ------------------------------------------------------------------ */
 :root {
-  --wood-deep: #241520;     /* night canopy */
-  --wood: #3d2335;          /* aubergine */
-  --wood-mid: #6b4560;      /* dusky plum */
+  --wood-deep: #3f1a34;     /* deep logo plum */
+  --wood: #66294f;          /* logo plum, shaded */
+  --wood-mid: #90416f;      /* logo plum #90416f */
   --mist: #cab5ba;          /* brand mauve, as fog */
   --rosegold: #f2d3c4;      /* light through the leaves */
   --blush: #f4dde4;
@@ -473,7 +473,7 @@ body {
 
 /* Header melts into the canopy */
 .site-header {
-  background: rgba(36, 21, 32, 0.9);
+  background: rgba(63, 26, 52, 0.92);
   border-bottom: 1px solid rgba(242, 211, 196, 0.1);
   color: var(--cream);
 }
@@ -518,7 +518,7 @@ body {
 .forest-edge {
   height: 56px;
   margin-bottom: 64px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%236b4560'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%238f9a88' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%238f9a88' transform='rotate(-30 32 50)'/%3E%3Ccircle cx='100' cy='52' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='100' cy='52' r='1.2' fill='%2390416f'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23cab5ba' transform='rotate(-20 163 46)'/%3E%3Ccircle cx='210' cy='43' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='210' cy='43' r='1.2' fill='%2390416f'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%2390416f'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%238f9a88' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%238f9a88' transform='rotate(-30 32 50)'/%3E%3Ccircle cx='100' cy='52' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='100' cy='52' r='1.2' fill='%233f1a34'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23cab5ba' transform='rotate(-20 163 46)'/%3E%3Ccircle cx='210' cy='43' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='210' cy='43' r='1.2' fill='%233f1a34'/%3E%3C/svg%3E")
     repeat-x top / 240px 56px;
 }
 
