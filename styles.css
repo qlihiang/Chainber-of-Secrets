@@ -423,22 +423,25 @@ h1 em, h2 em { color: var(--plum); }
 }
 
 /* ------------------------------------------------------------------
-   Enchanted forest theme: dusk-lit moss greens, beams of light and
-   drifting fireflies, layered under the plum and mauve brand colors.
+   Pink enchanted forest: a blossom wood at dusk. Deep aubergine canopy,
+   mauve mist, rose-gold light and blush fireflies, with a whisper of
+   muted sage in the vines. Plum and mauve remain the brand colors.
    ------------------------------------------------------------------ */
 :root {
-  --forest-deep: #141c17;
-  --forest: #1f2b22;
-  --moss: #3b4a35;
-  --fern: #6f8461;
-  --sunlight: #f4e6c4;
-  --mist: #eef0e8;
+  --wood-deep: #241520;     /* night canopy */
+  --wood: #3d2335;          /* aubergine */
+  --wood-mid: #6b4560;      /* dusky plum */
+  --mist: #cab5ba;          /* brand mauve, as fog */
+  --rosegold: #f2d3c4;      /* light through the leaves */
+  --blush: #f4dde4;
+  --cream: #f6eee6;
+  --leaf: #8f9a88;          /* muted sage, used sparingly */
 }
 
 body {
   background:
-    radial-gradient(1200px 600px at 85% 0%, rgba(111, 132, 97, 0.10), transparent 60%),
-    radial-gradient(900px 500px at 0% 40%, rgba(202, 181, 186, 0.18), transparent 60%),
+    radial-gradient(1200px 600px at 85% 0%, rgba(202, 181, 186, 0.22), transparent 60%),
+    radial-gradient(900px 500px at 0% 45%, rgba(242, 211, 196, 0.18), transparent 60%),
     var(--bg);
 }
 
@@ -453,10 +456,10 @@ body {
   position: absolute; inset: -20% -10% 0 -10%;
   z-index: 0;
   background:
-    linear-gradient(115deg, transparent 38%, rgba(244, 230, 196, 0.16) 42%, transparent 47%),
-    linear-gradient(110deg, transparent 52%, rgba(244, 230, 196, 0.10) 55%, transparent 60%),
-    linear-gradient(120deg, transparent 63%, rgba(244, 230, 196, 0.13) 66%, transparent 71%),
-    linear-gradient(105deg, transparent 22%, rgba(244, 230, 196, 0.07) 25%, transparent 30%);
+    linear-gradient(115deg, transparent 38%, rgba(242, 211, 196, 0.16) 42%, transparent 47%),
+    linear-gradient(110deg, transparent 52%, rgba(242, 211, 196, 0.10) 55%, transparent 60%),
+    linear-gradient(120deg, transparent 63%, rgba(242, 211, 196, 0.13) 66%, transparent 71%),
+    linear-gradient(105deg, transparent 22%, rgba(242, 211, 196, 0.07) 25%, transparent 30%);
   filter: blur(6px);
   animation: shafts 14s ease-in-out infinite alternate;
 }
@@ -466,48 +469,56 @@ body {
 }
 .enchanted > *:not(.fireflies) { position: relative; z-index: 2; }
 
+.announcement { background: var(--wood-deep); color: var(--rosegold); letter-spacing: 0.08em; }
+
 /* Header melts into the canopy */
 .site-header {
-  background: rgba(20, 28, 23, 0.86);
-  border-bottom: 1px solid rgba(244, 230, 196, 0.08);
-  color: var(--mist);
+  background: rgba(36, 21, 32, 0.9);
+  border-bottom: 1px solid rgba(242, 211, 196, 0.1);
+  color: var(--cream);
 }
-.site-header .wordmark { color: #e7c3d6; }
-.nav a:hover { color: #e7c3d6; }
-.menu-toggle span { background: var(--mist); }
+.site-header .wordmark { color: var(--blush); }
+.nav a:hover { color: var(--rosegold); }
+.menu-toggle span { background: var(--cream); }
 @media (max-width: 860px) {
-  .nav-left { background: var(--forest-deep); border-bottom-color: rgba(244, 230, 196, 0.08); }
+  .nav-left { background: var(--wood-deep); border-bottom-color: rgba(242, 211, 196, 0.1); }
 }
 
-/* Hero: a clearing at dusk, the arch glowing like a doorway */
+/* Hero: a blossom clearing at dusk, the arch glowing like a doorway */
 .hero {
   background:
-    radial-gradient(520px 460px at 72% 52%, rgba(244, 230, 196, 0.28), transparent 70%),
-    radial-gradient(900px 600px at 70% 120%, rgba(144, 65, 111, 0.35), transparent 70%),
-    linear-gradient(180deg, var(--forest-deep) 0%, var(--forest) 55%, var(--moss) 100%);
-  color: var(--mist);
+    radial-gradient(520px 460px at 72% 48%, rgba(242, 211, 196, 0.34), transparent 70%),
+    radial-gradient(1100px 380px at 50% 115%, rgba(202, 181, 186, 0.55), transparent 70%),
+    linear-gradient(180deg, var(--wood-deep) 0%, var(--wood) 55%, var(--wood-mid) 100%);
+  color: var(--cream);
   margin-bottom: 0;
 }
-.hero .eyebrow { color: #e7c3d6; }
-.hero h1 { color: #fbf3ea; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35); }
-.hero h1 em { color: #e7c3d6; }
-.hero .lede { color: rgba(238, 240, 232, 0.78); }
-.hero .btn { box-shadow: 0 0 0 1px rgba(244, 230, 196, 0.25), 0 10px 30px rgba(144, 65, 111, 0.45); }
-.hero-logo {
-  filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 18px rgba(244, 230, 196, 0.55));
+.hero .eyebrow, .hero h1 em { color: var(--rosegold); }
+.hero h1 { color: #fff7f2; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3); }
+.hero .lede { color: rgba(246, 238, 230, 0.8); }
+.hero .btn, .newsletter .btn {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--wood-deep);
+  box-shadow: 0 10px 30px rgba(242, 211, 196, 0.2);
+}
+
+/* Cream logo with a rose-gold glow */
+.hero-logo, .story-hero-art {
+  filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 16px rgba(242, 211, 196, 0.5));
   animation: breathe 6s ease-in-out infinite;
 }
 @keyframes breathe {
-  0%, 100% { filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 14px rgba(244, 230, 196, 0.45)); }
-  50%      { filter: brightness(2.25) saturate(0.7) drop-shadow(0 0 26px rgba(244, 230, 196, 0.7)); }
+  0%, 100% { filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 12px rgba(242, 211, 196, 0.4)); }
+  50%      { filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 26px rgba(242, 211, 196, 0.7)); }
 }
+.footer-brand img { filter: brightness(0) invert(0.9) sepia(0.2); opacity: 0.85; }
 
-/* Mossy edge where the forest meets the page */
+/* Blossom canopy edge where the wood meets the page */
 .forest-edge {
   height: 56px;
   margin-bottom: 64px;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%233b4a35'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%236f8461' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%236f8461' transform='rotate(-30 32 50)'/%3E%3Cellipse cx='100' cy='52' rx='4' ry='2.4' fill='%236f8461' transform='rotate(25 100 52)'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%2390416f' opacity='.7' transform='rotate(-20 163 46)'/%3E%3Cellipse cx='210' cy='43' rx='4' ry='2.4' fill='%236f8461' transform='rotate(30 210 43)'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%236b4560'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%238f9a88' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%238f9a88' transform='rotate(-30 32 50)'/%3E%3Ccircle cx='100' cy='52' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='100' cy='52' r='1.2' fill='%2390416f'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23cab5ba' transform='rotate(-20 163 46)'/%3E%3Ccircle cx='210' cy='43' r='3' fill='%23f4dde4'/%3E%3Ccircle cx='210' cy='43' r='1.2' fill='%2390416f'/%3E%3C/svg%3E")
     repeat-x top / 240px 56px;
 }
 
@@ -517,7 +528,7 @@ body {
   content: "";
   position: absolute; left: 50%; top: -40px; width: min(520px, 100%); height: 320px;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(244, 230, 196, 0.55), transparent);
+  background: radial-gradient(closest-side, rgba(242, 211, 196, 0.6), transparent);
   z-index: -1;
 }
 .intro h2::after {
@@ -526,157 +537,76 @@ body {
   font-size: 0.9rem;
   color: var(--plum);
   margin-top: 14px;
-  letter-spacing: 0;
 }
 
 /* Products sit in gothic window frames */
 .product-image {
   border-radius: 50% 50% var(--radius) var(--radius) / 22% 22% var(--radius) var(--radius);
-  box-shadow: 0 0 0 1px rgba(59, 74, 53, 0.18), 0 18px 40px -18px rgba(31, 43, 34, 0.55);
+  box-shadow: 0 0 0 1px rgba(107, 69, 96, 0.18), 0 18px 40px -18px rgba(61, 35, 53, 0.55);
 }
 .pdp-image {
   border-radius: 50% 50% var(--radius) var(--radius) / 16% 16% var(--radius) var(--radius);
-  box-shadow: 0 0 0 1px rgba(59, 74, 53, 0.18), 0 24px 60px -24px rgba(31, 43, 34, 0.6);
+  box-shadow: 0 0 0 1px rgba(107, 69, 96, 0.18), 0 24px 60px -24px rgba(61, 35, 53, 0.6);
 }
 .product-image::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(244, 230, 196, 0.18), transparent 35%);
+  background: linear-gradient(180deg, rgba(242, 211, 196, 0.2), transparent 35%);
   pointer-events: none;
 }
-
-/* Our story card: mauve under a canopy */
-.story { box-shadow: 0 30px 60px -30px rgba(31, 43, 34, 0.5); }
-
-/* Newsletter and footer: back into the woods */
-.newsletter {
-  background:
-    radial-gradient(600px 300px at 50% 0%, rgba(144, 65, 111, 0.35), transparent 70%),
-    linear-gradient(180deg, var(--moss), var(--forest-deep));
-  color: var(--mist);
-}
-.newsletter h2 { color: #fbf3ea; }
-.newsletter p { color: rgba(238, 240, 232, 0.75); }
-.newsletter input { border-color: rgba(244, 230, 196, 0.4); }
-
-.site-footer {
-  max-width: none;
-  background: var(--forest-deep);
-  color: rgba(238, 240, 232, 0.7);
-  padding-left: max(40px, calc((100% - 1160px) / 2));
-  padding-right: max(40px, calc((100% - 1160px) / 2));
-}
-.footer-cols p, .footer-cols a, .copyright { color: rgba(238, 240, 232, 0.6); }
-.footer-cols a:hover { color: #e7c3d6; }
-.footer-cols h3 { color: #e7c3d6; }
-.footer-brand img { filter: brightness(2.1) saturate(0.7); }
-@media (max-width: 860px) {
-  .site-footer { padding-left: 16px; padding-right: 16px; }
-}
-
-/* Our Story page hero joins the forest */
-.story-hero {
-  background:
-    radial-gradient(460px 420px at 78% 60%, rgba(244, 230, 196, 0.25), transparent 70%),
-    linear-gradient(180deg, var(--forest-deep), var(--moss));
-  color: var(--mist);
-  margin-bottom: 0;
-}
-.story-hero h1 { color: #fbf3ea; }
-.story-welcome { color: #e7c3d6; }
-.story-hero-art {
-  object-fit: contain;
-  max-width: 320px;
-  justify-self: center;
-  align-self: center;
-  padding: 40px 0;
-  filter: brightness(2.1) saturate(0.7) drop-shadow(0 0 18px rgba(244, 230, 196, 0.55));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .enchanted::before, .hero-logo { animation: none; }
-}
-
-/* Keep the arch windows at a graceful size and centered */
 #collection .section-head { justify-content: center; }
 #collection .product-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
   justify-content: center;
   gap: 40px 32px;
 }
-@media (max-width: 860px) {
-  #collection .product-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
-}
 
-/* ------------------------------------------------------------------
-   Forest palette v2: misty sage and blue-green, warm golden haze.
-   Pink/plum stays on light sections; dark areas use cream and gold.
-   ------------------------------------------------------------------ */
-:root {
-  --forest-deep: #18211f;
-  --forest: #26332f;
-  --moss: #4a5a50;
-  --fern: #7d8c7e;
-  --fog: #b9c2b6;
-  --sunlight: #ecdfbd;
-  --cream: #f3ecdc;
-}
+.story { box-shadow: 0 30px 60px -30px rgba(61, 35, 53, 0.5); }
 
-.announcement { background: var(--forest-deep); color: var(--sunlight); letter-spacing: 0.08em; }
-
-.site-header { background: rgba(24, 33, 31, 0.9); }
-.site-header .wordmark, .nav a:hover { color: var(--cream); }
-
-.hero {
-  background:
-    radial-gradient(520px 460px at 72% 48%, rgba(236, 223, 189, 0.30), transparent 70%),
-    radial-gradient(1100px 380px at 50% 115%, rgba(185, 194, 182, 0.45), transparent 70%),
-    linear-gradient(180deg, var(--forest-deep) 0%, var(--forest) 55%, var(--moss) 100%);
-}
-.hero .eyebrow, .hero h1 em { color: var(--sunlight); }
-.hero .btn {
-  background: var(--cream);
-  border-color: var(--cream);
-  color: var(--forest-deep);
-  box-shadow: 0 0 0 1px rgba(236, 223, 189, 0.3), 0 10px 30px rgba(236, 223, 189, 0.18);
-}
-.enchanted::before {
-  background:
-    linear-gradient(115deg, transparent 38%, rgba(236, 223, 189, 0.13) 42%, transparent 47%),
-    linear-gradient(110deg, transparent 52%, rgba(236, 223, 189, 0.08) 55%, transparent 60%),
-    linear-gradient(120deg, transparent 63%, rgba(236, 223, 189, 0.11) 66%, transparent 71%),
-    linear-gradient(105deg, transparent 22%, rgba(236, 223, 189, 0.06) 25%, transparent 30%);
-}
-
-/* Cream logo with a warm glow */
-.hero-logo, .story-hero-art {
-  filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 16px rgba(236, 223, 189, 0.45));
-  animation: breathe-cream 6s ease-in-out infinite;
-}
-@keyframes breathe-cream {
-  0%, 100% { filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 12px rgba(236, 223, 189, 0.35)); }
-  50%      { filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 24px rgba(236, 223, 189, 0.6)); }
-}
-.footer-brand img { filter: brightness(0) invert(0.9) sepia(0.2); opacity: 0.85; }
-
-.forest-edge {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%234a5a50'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%237d8c7e' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(-30 32 50)'/%3E%3Cellipse cx='100' cy='52' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(25 100 52)'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23b9c2b6' transform='rotate(-20 163 46)'/%3E%3Cellipse cx='210' cy='43' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(30 210 43)'/%3E%3C/svg%3E");
-}
-
+/* Newsletter and footer: back under the canopy */
 .newsletter {
   background:
-    radial-gradient(600px 300px at 50% 0%, rgba(236, 223, 189, 0.16), transparent 70%),
-    linear-gradient(180deg, var(--moss), var(--forest-deep));
+    radial-gradient(600px 300px at 50% 0%, rgba(242, 211, 196, 0.22), transparent 70%),
+    linear-gradient(180deg, var(--wood-mid), var(--wood-deep));
+  color: var(--cream);
 }
-.newsletter input { border-color: rgba(236, 223, 189, 0.45); }
-.newsletter .btn { background: var(--cream); border-color: var(--cream); color: var(--forest-deep); }
+.newsletter h2 { color: #fff7f2; }
+.newsletter p { color: rgba(246, 238, 230, 0.78); }
+.newsletter input { border-color: rgba(242, 211, 196, 0.5); }
 
-.footer-cols h3, .footer-cols a:hover { color: var(--sunlight); }
+.site-footer {
+  max-width: none;
+  background: var(--wood-deep);
+  padding-left: max(40px, calc((100% - 1160px) / 2));
+  padding-right: max(40px, calc((100% - 1160px) / 2));
+}
+.footer-cols p, .footer-cols a, .copyright { color: rgba(246, 238, 230, 0.62); }
+.footer-cols h3, .footer-cols a:hover { color: var(--rosegold); }
 
+/* Our Story page hero joins the wood */
 .story-hero {
   background:
-    radial-gradient(460px 420px at 78% 55%, rgba(236, 223, 189, 0.26), transparent 70%),
-    radial-gradient(1000px 300px at 50% 120%, rgba(185, 194, 182, 0.4), transparent 70%),
-    linear-gradient(180deg, var(--forest-deep), var(--moss));
+    radial-gradient(460px 420px at 78% 55%, rgba(242, 211, 196, 0.3), transparent 70%),
+    radial-gradient(1000px 300px at 50% 120%, rgba(202, 181, 186, 0.5), transparent 70%),
+    linear-gradient(180deg, var(--wood-deep), var(--wood-mid));
+  color: var(--cream);
+  margin-bottom: 0;
 }
-.story-welcome { color: var(--sunlight); }
+.story-hero h1 { color: #fff7f2; }
+.story-welcome { color: var(--rosegold); }
+.story-hero-art {
+  object-fit: contain;
+  max-width: 320px;
+  justify-self: center;
+  align-self: center;
+  padding: 40px 0;
+}
+
+@media (max-width: 860px) {
+  #collection .product-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
+  .site-footer { padding-left: 16px; padding-right: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enchanted::before, .hero-logo, .story-hero-art { animation: none; }
+}

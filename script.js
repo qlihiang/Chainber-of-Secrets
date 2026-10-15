@@ -65,7 +65,7 @@ document.querySelectorAll(".enchanted").forEach((section) => {
     ctx.clearRect(0, 0, w, h);
     for (const f of flies) {
       const glow = 0.15 + 0.55 * Math.abs(Math.sin(t / 1100 + f.phase));
-      const color = "236, 214, 160";
+      const color = Math.round(f.phase * 10) % 3 === 0 ? "244, 221, 228" : "242, 211, 180";
       const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
       g.addColorStop(0, `rgba(${color}, ${glow})`);
       g.addColorStop(1, `rgba(${color}, 0)`);
