@@ -607,3 +607,76 @@ body {
 @media (max-width: 860px) {
   #collection .product-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
 }
+
+/* ------------------------------------------------------------------
+   Forest palette v2: misty sage and blue-green, warm golden haze.
+   Pink/plum stays on light sections; dark areas use cream and gold.
+   ------------------------------------------------------------------ */
+:root {
+  --forest-deep: #18211f;
+  --forest: #26332f;
+  --moss: #4a5a50;
+  --fern: #7d8c7e;
+  --fog: #b9c2b6;
+  --sunlight: #ecdfbd;
+  --cream: #f3ecdc;
+}
+
+.announcement { background: var(--forest-deep); color: var(--sunlight); letter-spacing: 0.08em; }
+
+.site-header { background: rgba(24, 33, 31, 0.9); }
+.site-header .wordmark, .nav a:hover { color: var(--cream); }
+
+.hero {
+  background:
+    radial-gradient(520px 460px at 72% 48%, rgba(236, 223, 189, 0.30), transparent 70%),
+    radial-gradient(1100px 380px at 50% 115%, rgba(185, 194, 182, 0.45), transparent 70%),
+    linear-gradient(180deg, var(--forest-deep) 0%, var(--forest) 55%, var(--moss) 100%);
+}
+.hero .eyebrow, .hero h1 em { color: var(--sunlight); }
+.hero .btn {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--forest-deep);
+  box-shadow: 0 0 0 1px rgba(236, 223, 189, 0.3), 0 10px 30px rgba(236, 223, 189, 0.18);
+}
+.enchanted::before {
+  background:
+    linear-gradient(115deg, transparent 38%, rgba(236, 223, 189, 0.13) 42%, transparent 47%),
+    linear-gradient(110deg, transparent 52%, rgba(236, 223, 189, 0.08) 55%, transparent 60%),
+    linear-gradient(120deg, transparent 63%, rgba(236, 223, 189, 0.11) 66%, transparent 71%),
+    linear-gradient(105deg, transparent 22%, rgba(236, 223, 189, 0.06) 25%, transparent 30%);
+}
+
+/* Cream logo with a warm glow */
+.hero-logo, .story-hero-art {
+  filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 16px rgba(236, 223, 189, 0.45));
+  animation: breathe-cream 6s ease-in-out infinite;
+}
+@keyframes breathe-cream {
+  0%, 100% { filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 12px rgba(236, 223, 189, 0.35)); }
+  50%      { filter: brightness(0) invert(0.95) sepia(0.25) drop-shadow(0 0 24px rgba(236, 223, 189, 0.6)); }
+}
+.footer-brand img { filter: brightness(0) invert(0.9) sepia(0.2); opacity: 0.85; }
+
+.forest-edge {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='56' viewBox='0 0 240 56'%3E%3Cpath d='M0 0h240v18c-14 0-18 14-30 14s-14-12-28-12-16 20-32 20-14-16-30-16-18 10-30 10-14-14-28-14-16 22-30 22S6 28 0 26z' fill='%234a5a50'/%3E%3Cpath d='M38 30c2 8-2 14-6 20M96 34c-3 7 0 12 4 18M168 30c2 6 0 12-5 16M212 28c3 6 1 11-2 15' stroke='%237d8c7e' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='32' cy='50' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(-30 32 50)'/%3E%3Cellipse cx='100' cy='52' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(25 100 52)'/%3E%3Cellipse cx='163' cy='46' rx='4' ry='2.4' fill='%23b9c2b6' transform='rotate(-20 163 46)'/%3E%3Cellipse cx='210' cy='43' rx='4' ry='2.4' fill='%237d8c7e' transform='rotate(30 210 43)'/%3E%3C/svg%3E");
+}
+
+.newsletter {
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(236, 223, 189, 0.16), transparent 70%),
+    linear-gradient(180deg, var(--moss), var(--forest-deep));
+}
+.newsletter input { border-color: rgba(236, 223, 189, 0.45); }
+.newsletter .btn { background: var(--cream); border-color: var(--cream); color: var(--forest-deep); }
+
+.footer-cols h3, .footer-cols a:hover { color: var(--sunlight); }
+
+.story-hero {
+  background:
+    radial-gradient(460px 420px at 78% 55%, rgba(236, 223, 189, 0.26), transparent 70%),
+    radial-gradient(1000px 300px at 50% 120%, rgba(185, 194, 182, 0.4), transparent 70%),
+    linear-gradient(180deg, var(--forest-deep), var(--moss));
+}
+.story-welcome { color: var(--sunlight); }

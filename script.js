@@ -48,7 +48,7 @@ document.querySelectorAll(".enchanted").forEach((section) => {
     canvas.width = section.clientWidth * ratio;
     canvas.height = section.clientHeight * ratio;
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const count = Math.round(section.clientWidth / 28);
+    const count = Math.round(section.clientWidth / 55);
     flies = Array.from({ length: count }, () => ({
       x: Math.random() * section.clientWidth,
       y: Math.random() * section.clientHeight,
@@ -56,7 +56,6 @@ document.querySelectorAll(".enchanted").forEach((section) => {
       dx: (Math.random() - 0.5) * 0.25,
       dy: -0.1 - Math.random() * 0.25,
       phase: Math.random() * Math.PI * 2,
-      pink: Math.random() < 0.3,
     }));
   }
 
@@ -65,8 +64,8 @@ document.querySelectorAll(".enchanted").forEach((section) => {
     const h = section.clientHeight;
     ctx.clearRect(0, 0, w, h);
     for (const f of flies) {
-      const glow = 0.35 + 0.65 * Math.abs(Math.sin(t / 900 + f.phase));
-      const color = f.pink ? "231, 195, 214" : "244, 230, 196";
+      const glow = 0.15 + 0.55 * Math.abs(Math.sin(t / 1100 + f.phase));
+      const color = "236, 214, 160";
       const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
       g.addColorStop(0, `rgba(${color}, ${glow})`);
       g.addColorStop(1, `rgba(${color}, 0)`);
