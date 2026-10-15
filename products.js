@@ -11,7 +11,7 @@ const PRODUCTS = [
     summary: "Layered chainmaille with a rose quartz heart.",
     description: "A woven chainmaille collar draped with curb chain, finished with a rose quartz heart, pink crystal drops and silver spikes.",
     details: ["Handmade chainmaille", "Rose quartz heart pendant", "Pink crystal and bead accents"],
-    stripeLink: "",
+    stripeLink: "https://buy.stripe.com/eVq3cwe5V3idduQc0c4AU00",
   },
   {
     id: "bee-charm",
