@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chainber of Secrets</title>
+  <meta name="description" content="Handmade chainmaille necklaces with crystals, stones and charms.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Handmade one piece at a time</div>
+
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav nav-left" aria-label="Primary">
+      <a href="index.html#collection">Shop</a>
+      <a href="index.html#story">Our Story</a>
+    </nav>
+    <a href="index.html" class="wordmark">Chainber of Secrets</a>
+    <nav class="nav nav-right" aria-label="Secondary">
+      <a href="#">Instagram</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="pdp" id="pdp">
+      <div class="pdp-image">
+        <img id="pdp-img" src="" alt="" width="1200" height="1600">
+      </div>
+      <div class="pdp-info">
+        <a href="index.html#collection" class="back-link">← The Collection</a>
+        <h1 id="pdp-name"></h1>
+        <p class="pdp-price" id="pdp-price"></p>
+        <p class="pdp-desc" id="pdp-desc"></p>
+        <ul class="pdp-details" id="pdp-details"></ul>
+        <a class="btn btn-buy" id="pdp-buy" href="#">Buy now</a>
+        <p class="pdp-note" id="pdp-note">Secure checkout with Stripe</p>
+        <p class="pdp-handmade">Each piece is handmade, so small variations make yours one of a kind.</p>
+      </div>
+    </article>
+
+    <section class="products more">
+      <div class="section-head">
+        <h2>You may also like</h2>
+      </div>
+      <div class="product-grid" id="more-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Chainber of Secrets" width="779" height="1142">
+        <p>Handmade chainmaille jewelry.</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="index.html#collection">The Collection</a>
+      </div>
+      <div>
+        <h3>Help</h3>
+        <a href="#">Shipping</a><a href="#">Returns</a><a href="#">Jewelry Care</a><a href="#">Contact</a>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Pinterest</a>
+      </div>
+    </div>
+    <p class="copyright">© <span id="year"></span> Chainber of Secrets</p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

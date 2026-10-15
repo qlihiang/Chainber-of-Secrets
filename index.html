@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chainber of Secrets</title>
-  <meta name="description" content="Everyday chains and charms, made to be layered.">
+  <meta name="description" content="Handmade chainmaille necklaces with crystals, stones and charms.">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,22 +12,20 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="announcement">Free shipping on orders over $50 · Free gift wrap, always</div>
+  <div class="announcement">Handmade one piece at a time</div>
 
   <header class="site-header">
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
     <nav class="nav nav-left" aria-label="Primary">
-      <a href="#shop">Shop</a>
-      <a href="#bestsellers">Bestsellers</a>
-      <a href="#story">Our Story</a>
+      <a href="index.html#collection">Shop</a>
+      <a href="index.html#story">Our Story</a>
     </nav>
-    <a href="#" class="wordmark">Chainber of Secrets</a>
-    <nav class="nav nav-right" aria-label="Account">
-      <a href="#">Search</a>
-      <a href="#">Account</a>
-      <button class="cart-btn">Bag (<span id="cart-count">0</span>)</button>
+    <a href="index.html" class="wordmark">Chainber of Secrets</a>
+    <nav class="nav nav-right" aria-label="Secondary">
+      <a href="#">Instagram</a>
+      <a href="#">Contact</a>
     </nav>
   </header>
 
@@ -37,24 +35,16 @@
         <div class="hero-text">
           <p class="eyebrow">New collection</p>
           <h1>Little secrets,<br><em>worn every day.</em></h1>
-          <p class="lede">Delicate chains and charms designed to be layered, stacked and never taken off.</p>
-          <a href="#bestsellers" class="btn">Shop now</a>
+          <p class="lede">Handmade chainmaille necklaces with crystals, stones and charms.</p>
+          <a href="#collection" class="btn">Shop the collection</a>
         </div>
         <img class="hero-logo" src="assets/logo.png" alt="Chainber of Secrets" width="779" height="1142">
       </div>
     </section>
 
-    <section class="categories" id="shop">
-      <a href="#" class="category" style="--tile: var(--rose)"><span>Necklaces</span></a>
-      <a href="#" class="category" style="--tile: var(--lilac)"><span>Bracelets</span></a>
-      <a href="#" class="category" style="--tile: var(--petal)"><span>Charms</span></a>
-      <a href="#" class="category" style="--tile: var(--dusk)"><span>Gift Sets</span></a>
-    </section>
-
-    <section class="products" id="bestsellers">
+    <section class="products" id="collection">
       <div class="section-head">
-        <h2>Bestsellers</h2>
-        <a href="#">Shop all →</a>
+        <h2>The Collection</h2>
       </div>
       <div class="product-grid" id="product-grid"></div>
     </section>
@@ -64,7 +54,7 @@
       <div class="story-text">
         <p class="eyebrow">Our story</p>
         <h2>Made for the moments you keep to yourself.</h2>
-        <p>Every piece is made from recycled sterling silver and 14k gold vermeil, built to be worn in the shower, at the gym and everywhere in between.</p>
+        <p>Every necklace is made by hand, link by link, then finished with crystals, stones and charms. No two pieces turn out quite the same.</p>
         <a href="#" class="btn btn-outline">Learn more</a>
       </div>
     </section>
@@ -84,11 +74,11 @@
     <div class="footer-cols">
       <div class="footer-brand">
         <img src="assets/logo.png" alt="Chainber of Secrets" width="779" height="1142">
-        <p>Everyday chains and charms.</p>
+        <p>Handmade chainmaille jewelry.</p>
       </div>
       <div>
         <h3>Shop</h3>
-        <a href="#">Necklaces</a><a href="#">Bracelets</a><a href="#">Charms</a><a href="#">Gift Sets</a>
+        <a href="index.html#collection">The Collection</a>
       </div>
       <div>
         <h3>Help</h3>
@@ -102,6 +92,7 @@
     <p class="copyright">© <span id="year"></span> Chainber of Secrets</p>
   </footer>
 
+  <script src="products.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
