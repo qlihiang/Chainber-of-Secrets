@@ -20,7 +20,7 @@ const PRODUCTS = [
     summary: "Yellow jade, snow obsidian and tiger eye around a bee charm.",
     description: "Two tiers of chain frame a queen bee charm, strung with yellow jade, snow obsidian and tiger eye, with stainless steel hardware.",
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
-    stripeLink: "",
+    stripeLink: "https://buy.stripe.com/28EaEY0f5f0V62o0hu4AU01",
   },
   {
     id: "rosette-bracelet",
