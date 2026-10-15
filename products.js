@@ -5,7 +5,7 @@ const PRODUCTS = [
   {
     id: "rose-quartz-heart",
     name: "Rose Quartz Heart Necklace",
-    price: 68,
+    price: 128,
     image: "assets/rose-quartz-heart.jpg",
     badge: "New",
     summary: "Layered chainmaille with a rose quartz heart.",
