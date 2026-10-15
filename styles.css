@@ -503,16 +503,16 @@ body {
   box-shadow: 0 10px 30px rgba(242, 211, 196, 0.2);
 }
 
-/* Cream logo with a rose-gold glow */
+/* Logo in the brand's light mauve, with a soft rose-gold glow */
 .hero-logo, .story-hero-art {
-  filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 16px rgba(242, 211, 196, 0.5));
+  filter: drop-shadow(0 0 14px rgba(242, 211, 196, 0.45));
   animation: breathe 6s ease-in-out infinite;
 }
 @keyframes breathe {
-  0%, 100% { filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 12px rgba(242, 211, 196, 0.4)); }
-  50%      { filter: brightness(0) invert(0.96) sepia(0.2) drop-shadow(0 0 26px rgba(242, 211, 196, 0.7)); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(242, 211, 196, 0.35)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(242, 211, 196, 0.65)); }
 }
-.footer-brand img { filter: brightness(0) invert(0.9) sepia(0.2); opacity: 0.85; }
+.footer-brand img { opacity: 0.9; }
 
 /* Blossom canopy edge where the wood meets the page */
 .forest-edge {
