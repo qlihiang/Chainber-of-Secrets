@@ -397,3 +397,27 @@ h1 em, h2 em { color: var(--plum); }
   .story-pull { font-size: 1.7rem; }
   .story-closing { font-size: 1.5rem; }
 }
+
+/* Homepage brand intro */
+.intro {
+  max-width: 640px;
+  margin: 0 auto 88px;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.intro h2 { font-size: clamp(2.2rem, 4.5vw, 3rem); color: var(--ink); margin-bottom: 6px; }
+.intro p { font-size: 1.1rem; line-height: 1.7; color: var(--muted); }
+.intro-kicker {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.5rem !important;
+  color: var(--plum) !important;
+  margin-top: 6px;
+}
+@media (max-width: 860px) {
+  .intro { padding: 0 16px; margin-bottom: 64px; }
+  .intro p { font-size: 1.02rem; }
+}
