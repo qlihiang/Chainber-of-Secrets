@@ -1,15 +1,15 @@
 const products = [
-  { name: "Whisper Chain Necklace", price: 48, rating: 4.9, reviews: 312, tile: "--blush", icon: "necklace", badge: "Bestseller" },
-  { name: "Keepsake Locket", price: 64, rating: 4.8, reviews: 198, tile: "--sage", icon: "locket" },
-  { name: "Paperclip Bracelet", price: 38, rating: 4.7, reviews: 156, tile: "--lavender", icon: "bracelet", badge: "New" },
-  { name: "Initial Charm", price: 28, rating: 5.0, reviews: 87, tile: "--butter", icon: "charm" },
+  { name: "Whisper Chain Necklace", price: 48, rating: 4.9, reviews: 312, tile: "--rose", icon: "necklace", badge: "Bestseller" },
+  { name: "Keepsake Locket", price: 64, rating: 4.8, reviews: 198, tile: "--lilac", icon: "locket" },
+  { name: "Paperclip Bracelet", price: 38, rating: 4.7, reviews: 156, tile: "--petal", icon: "bracelet", badge: "New" },
+  { name: "Initial Charm", price: 28, rating: 5.0, reviews: 87, tile: "--dusk", icon: "charm" },
 ];
 
 const icons = {
-  necklace: `<path d="M20 20 Q60 95 100 20" fill="none" stroke="var(--gold)" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><circle cx="60" cy="68" r="7" fill="var(--gold)"/>`,
-  locket: `<path d="M30 15 Q60 60 90 15" fill="none" stroke="var(--gold)" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><ellipse cx="60" cy="62" rx="14" ry="17" fill="none" stroke="var(--gold)" stroke-width="4"/>`,
-  bracelet: `<ellipse cx="60" cy="50" rx="38" ry="24" fill="none" stroke="var(--gold)" stroke-width="5" stroke-dasharray="10 4"/>`,
-  charm: `<circle cx="60" cy="22" r="5" fill="none" stroke="var(--gold)" stroke-width="3"/><circle cx="60" cy="52" r="22" fill="var(--gold)"/><text x="60" y="60" text-anchor="middle" font-family="Fraunces, serif" font-size="22" fill="var(--cream)">S</text>`,
+  necklace: `<path d="M20 20 Q60 95 100 20" fill="none" stroke="var(--plum)" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><circle cx="60" cy="68" r="7" fill="var(--plum)"/>`,
+  locket: `<path d="M30 15 Q60 60 90 15" fill="none" stroke="var(--plum)" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><ellipse cx="60" cy="62" rx="14" ry="17" fill="none" stroke="var(--plum)" stroke-width="4"/>`,
+  bracelet: `<ellipse cx="60" cy="50" rx="38" ry="24" fill="none" stroke="var(--plum)" stroke-width="5" stroke-dasharray="10 4"/>`,
+  charm: `<circle cx="60" cy="22" r="5" fill="none" stroke="var(--plum)" stroke-width="3"/><circle cx="60" cy="52" r="22" fill="var(--plum)"/><text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" fill="var(--bg)">S</text>`,
 };
 
 const grid = document.getElementById("product-grid");
