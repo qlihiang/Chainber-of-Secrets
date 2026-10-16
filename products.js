@@ -31,6 +31,7 @@ const PRODUCTS = [
     name: "The Queen Necklace",
     price: 128,
     image: "assets/bee-charm.jpg",
+    images: ["assets/bee-charm.jpg", "assets/queen-necklace-2.jpg", "assets/queen-necklace-3.jpg"],
     summary: "Yellow jade, snow obsidian and tiger eye around a bee charm.",
     description: "Two tiers of chain frame a queen bee charm, strung with yellow jade, snow obsidian and tiger eye, with stainless steel hardware.",
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
