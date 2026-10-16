@@ -10,7 +10,7 @@
 const PRODUCTS = [
   {
     id: "the-protector",
-    stripePriceId: "",
+    stripePriceId: "price_1UQpAAJFPFLF0cf3CF9Qveql",
     stock: 1,
     oneOfAKind: true,
     name: "The Protector Necklace",
@@ -23,7 +23,7 @@ const PRODUCTS = [
   },
   {
     id: "the-queen",
-    stripePriceId: "",
+    stripePriceId: "price_1UQp1MJFPFLF0cf36HVBHpp2",
     stock: 1,
     oneOfAKind: true,
     name: "The Queen Necklace",
