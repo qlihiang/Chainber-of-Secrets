@@ -436,6 +436,8 @@ h1 em, h2 em { color: var(--plum); }
   --blush: #fff3f1;
   --cream: #fffaf8;
   --leaf: #8f9a88;          /* muted sage, used sparingly */
+  --butter: #fbe8a6;        /* butter yellow accent: wordmark, highlights, buttons */
+  --butter-deep: #e0b84f;   /* butter on light backgrounds */
 }
 
 body {
@@ -469,7 +471,7 @@ body {
 }
 .enchanted > *:not(.fireflies) { position: relative; z-index: 2; }
 
-.announcement { background: var(--wood-deep); color: var(--rosegold); letter-spacing: 0.08em; }
+.announcement { background: var(--wood-deep); color: var(--butter); letter-spacing: 0.08em; }
 
 /* Header melts into the canopy */
 .site-header {
@@ -477,8 +479,8 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--cream);
 }
-.site-header .wordmark { color: var(--blush); }
-.nav a:hover { color: var(--rosegold); }
+.site-header .wordmark { color: var(--butter); }
+.nav a:hover { color: var(--butter); }
 .menu-toggle span { background: var(--cream); }
 @media (max-width: 860px) {
   .nav-left { background: var(--wood-deep); border-bottom-color: rgba(255, 255, 255, 0.15); }
@@ -492,13 +494,13 @@ body {
   color: var(--cream);
   margin-bottom: 0;
 }
-.hero .eyebrow, .hero h1 em { color: var(--rosegold); }
+.hero .eyebrow, .hero h1 em { color: var(--butter); }
 .hero h1 { color: #fff; text-shadow: 0 2px 24px rgba(140, 40, 70, 0.25); }
 .hero .lede { color: rgba(255, 250, 248, 0.92); }
 .hero .btn, .newsletter .btn {
-  background: var(--cream);
-  border-color: var(--cream);
-  color: var(--wood-deep);
+  background: var(--butter);
+  border-color: var(--butter);
+  color: #a8405a;
   box-shadow: 0 10px 30px rgba(140, 40, 70, 0.18);
 }
 
@@ -578,7 +580,7 @@ body {
   content: "✦";
   display: block;
   font-size: 0.9rem;
-  color: var(--plum);
+  color: var(--butter-deep);
   margin-top: 14px;
 }
 
@@ -626,7 +628,7 @@ body {
   padding-right: max(40px, calc((100% - 1160px) / 2));
 }
 .footer-cols p, .footer-cols a, .copyright { color: rgba(255, 250, 248, 0.85); }
-.footer-cols h3, .footer-cols a:hover { color: #fff; }
+.footer-cols h3, .footer-cols a:hover { color: var(--butter); }
 
 /* Our Story page hero joins the wood */
 .story-hero {
@@ -637,7 +639,7 @@ body {
   margin-bottom: 0;
 }
 .story-hero h1 { color: #fff; }
-.story-welcome { color: var(--rosegold); }
+.story-welcome { color: var(--butter); }
 .story-hero-art {
   object-fit: contain;
   max-width: 320px;
@@ -681,7 +683,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5em;
   font-size: 0.9rem;
-  color: var(--rosegold);
+  color: var(--butter);
   margin-top: 8px;
   padding-left: 0.5em;
 }
