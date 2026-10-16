@@ -873,3 +873,8 @@ body.cart-open { overflow: hidden; }
   .pdp-thumbs button[aria-current="true"] { background: var(--plum); box-shadow: none; }
   .pdp-thumbs img { display: none; }
 }
+
+/* Shop email in the footer */
+.footer-brand p + p { margin-top: 6px; }
+.footer-email { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(251, 232, 166, 0.5); }
+.footer-email:hover { color: var(--butter); }
