@@ -65,7 +65,7 @@ const PRODUCTS = [
   {
     id: "the-forage",
     stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
-    stock: 1,
+    stock: 2,
     name: "The Forage Bracelet",
     price: 38,
     image: "assets/forage-bracelet.jpg",
