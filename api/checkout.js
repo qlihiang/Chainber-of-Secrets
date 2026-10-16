@@ -2,7 +2,7 @@
 // Prices always come from Stripe (by Price ID), never from the browser.
 // Needs the STRIPE_SECRET_KEY environment variable set in Vercel.
 
-const { PRODUCTS, SHOP } = require("../products.js");
+const { PRODUCTS, SHOP, maxPerCustomer } = require("../products.js");
 
 const STRIPE_API = "https://api.stripe.com/v1";
 
@@ -41,9 +41,9 @@ module.exports = async function handler(req, res) {
     const product = PRODUCTS.find((p) => p.id === item?.id);
     const qty = Number.parseInt(item?.qty, 10);
     if (!product) return fail(res, 400, "One of the items is no longer available.");
-    if (product.soldOut) return fail(res, 409, `${product.name} has sold out.`);
+    if (maxPerCustomer(product) < 1) return fail(res, 409, `${product.name} has sold out.`);
     if (!product.stripePriceId) return fail(res, 409, `${product.name} isn't available to buy yet.`);
-    if (!Number.isInteger(qty) || qty < 1 || qty > (product.maxQty || 1)) {
+    if (!Number.isInteger(qty) || qty < 1 || qty > maxPerCustomer(product)) {
       return fail(res, 400, `Please check the quantity for ${product.name}.`);
     }
     lines.push({ product, qty });

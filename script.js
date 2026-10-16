@@ -5,7 +5,7 @@ if (grid) {
   grid.innerHTML = PRODUCTS.map((p) => `
     <a href="product.html#${p.id}" class="product">
       <div class="product-image">
-        ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+        ${(p.stock ?? 0) === 0 ? `<span class="badge">Sold out</span>` : p.badge ? `<span class="badge">${p.badge}</span>` : ""}
         <img src="${p.image}" alt="${p.name}" loading="lazy" width="1200" height="1600">
       </div>
       <h3>${p.name}</h3>

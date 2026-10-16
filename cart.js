@@ -8,7 +8,13 @@ const Cart = (() => {
   function read() {
     try {
       const items = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      return Array.isArray(items) ? items.filter((i) => PRODUCTS.some((p) => p.id === i.id)) : [];
+      if (!Array.isArray(items)) return [];
+      return items
+        .map((i) => {
+          const p = PRODUCTS.find((x) => x.id === i.id);
+          return p ? { id: i.id, qty: Math.min(i.qty, maxPerCustomer(p)) } : null;
+        })
+        .filter((i) => i && i.qty > 0);
     } catch {
       return [];
     }
@@ -20,7 +26,7 @@ const Cart = (() => {
   }
 
   const product = (id) => PRODUCTS.find((p) => p.id === id);
-  const canBuy = (p) => p && !p.soldOut && p.stripePriceId && p.price != null;
+  const canBuy = (p) => p && maxPerCustomer(p) > 0 && p.stripePriceId && p.price != null;
 
   return {
     items: read,
@@ -34,7 +40,7 @@ const Cart = (() => {
       if (!canBuy(p)) return false;
       const items = read();
       const line = items.find((i) => i.id === id);
-      const max = p.maxQty || 1;
+      const max = maxPerCustomer(p);
       if (line) {
         if (line.qty >= max) return false;
         line.qty += 1;
@@ -47,7 +53,7 @@ const Cart = (() => {
     setQty(id, qty) {
       const p = product(id);
       const items = read()
-        .map((i) => (i.id === id ? { ...i, qty: Math.min(Math.max(qty, 0), p?.maxQty || 1) } : i))
+        .map((i) => (i.id === id ? { ...i, qty: Math.min(Math.max(qty, 0), p ? maxPerCustomer(p) : 0) } : i))
         .filter((i) => i.qty > 0);
       write(items);
     },
@@ -111,7 +117,7 @@ const Cart = (() => {
     } else {
       body.innerHTML = items.map((i) => {
         const p = PRODUCTS.find((x) => x.id === i.id);
-        const max = p.maxQty || 1;
+        const max = maxPerCustomer(p);
         return `
           <div class="cart-line">
             <img src="${p.image}" alt="" width="72" height="96">
@@ -119,11 +125,11 @@ const Cart = (() => {
               <a href="product.html#${p.id}" class="cart-line-name">${p.name}</a>
               <span class="cart-line-price">${formatPrice(p.price)}</span>
               <div class="cart-qty">
-                ${max > 1 ? `
+                ${!p.oneOfAKind && max > 1 ? `
                   <button type="button" data-qty="${p.id}" data-delta="-1" aria-label="Fewer">−</button>
                   <span>${i.qty}</span>
                   <button type="button" data-qty="${p.id}" data-delta="1" aria-label="More" ${i.qty >= max ? "disabled" : ""}>+</button>
-                ` : `<span class="cart-unique">One of a kind</span>`}
+                ` : `<span class="cart-unique">${p.oneOfAKind ? "One of a kind" : "Qty 1"}</span>`}
                 <button type="button" class="cart-remove" data-remove="${p.id}">Remove</button>
               </div>
             </div>
