@@ -40,8 +40,8 @@ const PRODUCTS = [
 const SHOP = {
   currency: "sgd",
   shipToCountries: ["SG"],
-  shippingFee: null,        // flat shipping fee in dollars, e.g. 5
-  freeShippingOver: null,   // orders at or above this (in dollars) ship free, e.g. 150
+  shippingFee: 5,           // flat shipping fee in dollars
+  freeShippingOver: 100,    // orders at or above this (in dollars) ship free
 };
 
 function formatPrice(amount) {
