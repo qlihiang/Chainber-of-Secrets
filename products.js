@@ -18,6 +18,7 @@ const PRODUCTS = [
     name: "The Protector Necklace",
     price: 138,
     image: "assets/rose-quartz-heart.jpg",
+    images: ["assets/rose-quartz-heart.jpg", "assets/protector-necklace-2.jpg", "assets/protector-necklace-3.jpg"],
     summary: "Rose quartz heart, pearls and Swarovski crystal on woven chainmaille.",
     description: "A woven chainmaille collar draped with chain, finished with a rose quartz heart, pearls and Swarovski crystal, with stainless steel hardware.",
     details: ["Rose quartz heart", "Pearls", "Swarovski crystal", "Stainless steel hardware"],
