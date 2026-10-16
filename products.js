@@ -69,6 +69,7 @@ const PRODUCTS = [
     name: "The Forage Bracelet",
     price: 38,
     image: "assets/forage-bracelet.jpg",
+    images: ["assets/forage-bracelet.jpg", "assets/forage-bracelet-2.jpg"],
     summary: "Little woven chainmaille blooms and a bee charm, all in stainless steel.",
     description: "A bee out foraging from flower to flower: small chainmaille blooms are woven ring by ring and linked by open rings, with a little bee charm by the clasp, all in stainless steel. Light and shining, easy to wear every day, alone or stacked.",
     details: ["Woven chainmaille blooms", "Bee charm", "Stainless steel hardware"],
