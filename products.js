@@ -57,8 +57,8 @@ const PRODUCTS = [
     name: "The Harvest Bracelet",
     price: 38,
     image: "assets/harvest-bracelet.jpg",
-    summary: "Yellow jade, snow obsidian and tiger eye on a fine linked chain.",
-    description: "A delicate bracelet of yellow jade, snow obsidian and tiger eye, linked stone by stone along a fine chain, with stainless steel hardware. Easy to wear every day, alone or stacked.",
+    summary: "Honey-toned yellow jade, snow obsidian and tiger eye, inspired by the bees' harvest.",
+    description: "Inspired by the honey bees gather and store, drop by golden drop. Honey-coloured yellow jade sits beside snow obsidian and tiger eye, linked stone by stone along a fine chain like a little harvest carried home, with stainless steel hardware. Easy to wear every day, alone or stacked.",
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
   },
 ];
