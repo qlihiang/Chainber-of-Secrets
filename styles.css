@@ -1,15 +1,16 @@
-/* Palette taken from the brand artwork: dusty mauve ground, plum line work */
+/* Palette: baby pink tones (CD5E77, E17F93, EE959E, EBA7AC, F4C2C2),
+   with a deep rose ink so small text stays readable */
 :root {
-  --bg: #faf6f7;
-  --ink: #3b2232;
-  --muted: #7d6672;
-  --plum: #90416f;
-  --mauve: #cab5ba;
-  --rose: #efe2e5;
-  --lilac: #e6dce8;
-  --petal: #f4eaec;
-  --dusk: #ddcbd0;
-  --line: rgba(59, 34, 50, 0.1);
+  --bg: #fff7f7;
+  --ink: #6e2a3d;
+  --muted: #9a5a6b;
+  --plum: #cd5e77;
+  --mauve: #eba7ac;
+  --rose: #fbe3e3;
+  --lilac: #f8dcdc;
+  --petal: #fdeeee;
+  --dusk: #f4c2c2;
+  --line: rgba(110, 42, 61, 0.12);
   --radius: 18px;
   --display: "Cormorant Garamond", Georgia, serif;
   --caps: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
@@ -47,7 +48,7 @@ img, svg { display: block; max-width: 100%; height: auto; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 16px 40px;
-  background: rgba(250, 246, 247, 0.92);
+  background: rgba(255, 247, 247, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -423,25 +424,24 @@ h1 em, h2 em { color: var(--plum); }
 }
 
 /* ------------------------------------------------------------------
-   Pink enchanted forest: a blossom wood at dusk. Deep aubergine canopy,
-   mauve mist, rose-gold light and blush fireflies, with a whisper of
-   muted sage in the vines. Plum and mauve remain the brand colors.
+   Rose canopy: a baby-pink blossom wood. Deep rose overhead fading to
+   blush, soft white light and fireflies, rose vines hanging into the page.
    ------------------------------------------------------------------ */
 :root {
-  --wood-deep: #3f1a34;     /* deep logo plum */
-  --wood: #66294f;          /* logo plum, shaded */
-  --wood-mid: #90416f;      /* logo plum #90416f */
-  --mist: #cab5ba;          /* brand mauve, as fog */
-  --rosegold: #f2d3c4;      /* light through the leaves */
-  --blush: #f4dde4;
-  --cream: #f6eee6;
+  --wood-deep: #cd5e77;     /* deepest rose */
+  --wood: #e17f93;
+  --wood-mid: #ee959e;
+  --mist: #eba7ac;
+  --rosegold: #ffe9e6;      /* light through the leaves */
+  --blush: #fff3f1;
+  --cream: #fffaf8;
   --leaf: #8f9a88;          /* muted sage, used sparingly */
 }
 
 body {
   background:
-    radial-gradient(1200px 600px at 85% 0%, rgba(202, 181, 186, 0.22), transparent 60%),
-    radial-gradient(900px 500px at 0% 45%, rgba(242, 211, 196, 0.18), transparent 60%),
+    radial-gradient(1200px 600px at 85% 0%, rgba(244, 194, 194, 0.3), transparent 60%),
+    radial-gradient(900px 500px at 0% 45%, rgba(255, 233, 230, 0.4), transparent 60%),
     var(--bg);
 }
 
@@ -456,10 +456,10 @@ body {
   position: absolute; inset: -20% -10% 0 -10%;
   z-index: 0;
   background:
-    linear-gradient(115deg, transparent 38%, rgba(242, 211, 196, 0.16) 42%, transparent 47%),
-    linear-gradient(110deg, transparent 52%, rgba(242, 211, 196, 0.10) 55%, transparent 60%),
-    linear-gradient(120deg, transparent 63%, rgba(242, 211, 196, 0.13) 66%, transparent 71%),
-    linear-gradient(105deg, transparent 22%, rgba(242, 211, 196, 0.07) 25%, transparent 30%);
+    linear-gradient(115deg, transparent 38%, rgba(255, 236, 232, 0.16) 42%, transparent 47%),
+    linear-gradient(110deg, transparent 52%, rgba(255, 236, 232, 0.10) 55%, transparent 60%),
+    linear-gradient(120deg, transparent 63%, rgba(255, 236, 232, 0.13) 66%, transparent 71%),
+    linear-gradient(105deg, transparent 22%, rgba(255, 236, 232, 0.07) 25%, transparent 30%);
   filter: blur(6px);
   animation: shafts 14s ease-in-out infinite alternate;
 }
@@ -473,44 +473,43 @@ body {
 
 /* Header melts into the canopy */
 .site-header {
-  background: rgba(63, 26, 52, 0.92);
-  border-bottom: 1px solid rgba(242, 211, 196, 0.1);
+  background: rgba(205, 94, 119, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--cream);
 }
 .site-header .wordmark { color: var(--blush); }
 .nav a:hover { color: var(--rosegold); }
 .menu-toggle span { background: var(--cream); }
 @media (max-width: 860px) {
-  .nav-left { background: var(--wood-deep); border-bottom-color: rgba(242, 211, 196, 0.1); }
+  .nav-left { background: var(--wood-deep); border-bottom-color: rgba(255, 255, 255, 0.15); }
 }
 
 /* Hero: a blossom clearing at dusk, the arch glowing like a doorway */
 .hero {
   background:
-    radial-gradient(520px 460px at 72% 48%, rgba(242, 211, 196, 0.34), transparent 70%),
-    radial-gradient(1100px 380px at 50% 115%, rgba(202, 181, 186, 0.55), transparent 70%),
-    linear-gradient(180deg, var(--wood-deep) 0%, var(--wood) 55%, var(--wood-mid) 100%);
+    radial-gradient(520px 460px at 72% 48%, rgba(255, 236, 232, 0.4), transparent 70%),
+    linear-gradient(180deg, var(--wood-deep) 0%, var(--wood) 50%, var(--wood-mid) 100%);
   color: var(--cream);
   margin-bottom: 0;
 }
 .hero .eyebrow, .hero h1 em { color: var(--rosegold); }
-.hero h1 { color: #fff7f2; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3); }
-.hero .lede { color: rgba(246, 238, 230, 0.8); }
+.hero h1 { color: #fff; text-shadow: 0 2px 24px rgba(140, 40, 70, 0.25); }
+.hero .lede { color: rgba(255, 250, 248, 0.92); }
 .hero .btn, .newsletter .btn {
   background: var(--cream);
   border-color: var(--cream);
   color: var(--wood-deep);
-  box-shadow: 0 10px 30px rgba(242, 211, 196, 0.2);
+  box-shadow: 0 10px 30px rgba(140, 40, 70, 0.18);
 }
 
-/* Logo in the brand's light mauve, with a soft rose-gold glow */
+/* Logo in soft white, with a gentle glow */
 .hero-logo, .story-hero-art {
-  filter: drop-shadow(0 0 14px rgba(242, 211, 196, 0.45));
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.4));
   animation: breathe 6s ease-in-out infinite;
 }
 @keyframes breathe {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(242, 211, 196, 0.35)); }
-  50%      { filter: drop-shadow(0 0 22px rgba(242, 211, 196, 0.65)); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.6)); }
 }
 .footer-brand img { opacity: 0.9; }
 
@@ -572,7 +571,7 @@ body {
   content: "";
   position: absolute; left: 50%; top: -40px; width: min(520px, 100%); height: 320px;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(242, 211, 196, 0.6), transparent);
+  background: radial-gradient(closest-side, rgba(244, 194, 194, 0.55), transparent);
   z-index: -1;
 }
 .intro h2::after {
@@ -586,16 +585,16 @@ body {
 /* Products sit in gothic window frames */
 .product-image {
   border-radius: 50% 50% var(--radius) var(--radius) / 22% 22% var(--radius) var(--radius);
-  box-shadow: 0 0 0 1px rgba(107, 69, 96, 0.18), 0 18px 40px -18px rgba(61, 35, 53, 0.55);
+  box-shadow: 0 0 0 1px rgba(205, 94, 119, 0.2), 0 18px 40px -18px rgba(205, 94, 119, 0.5);
 }
 .pdp-image {
   border-radius: 50% 50% var(--radius) var(--radius) / 16% 16% var(--radius) var(--radius);
-  box-shadow: 0 0 0 1px rgba(107, 69, 96, 0.18), 0 24px 60px -24px rgba(61, 35, 53, 0.6);
+  box-shadow: 0 0 0 1px rgba(205, 94, 119, 0.2), 0 24px 60px -24px rgba(205, 94, 119, 0.55);
 }
 .product-image::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(242, 211, 196, 0.2), transparent 35%);
+  background: linear-gradient(180deg, rgba(255, 236, 232, 0.2), transparent 35%);
   pointer-events: none;
 }
 #collection .section-head { justify-content: center; }
@@ -605,18 +604,20 @@ body {
   gap: 40px 32px;
 }
 
-.story { box-shadow: 0 30px 60px -30px rgba(61, 35, 53, 0.5); }
+.story { box-shadow: 0 30px 60px -30px rgba(205, 94, 119, 0.45); }
+.story .btn-outline { color: var(--ink); border-color: var(--ink); }
+.story .btn-outline:hover { background: var(--ink); color: #fff; }
 
 /* Newsletter and footer: back under the canopy */
 .newsletter {
   background:
-    radial-gradient(600px 300px at 50% 0%, rgba(242, 211, 196, 0.22), transparent 70%),
+    radial-gradient(600px 300px at 50% 0%, rgba(255, 236, 232, 0.3), transparent 70%),
     linear-gradient(180deg, var(--wood-mid), var(--wood-deep));
   color: var(--cream);
 }
-.newsletter h2 { color: #fff7f2; }
-.newsletter p { color: rgba(246, 238, 230, 0.78); }
-.newsletter input { border-color: rgba(242, 211, 196, 0.5); }
+.newsletter h2 { color: #fff; }
+.newsletter p { color: rgba(255, 250, 248, 0.9); }
+.newsletter input { border-color: rgba(255, 255, 255, 0.6); }
 
 .site-footer {
   max-width: none;
@@ -624,19 +625,18 @@ body {
   padding-left: max(40px, calc((100% - 1160px) / 2));
   padding-right: max(40px, calc((100% - 1160px) / 2));
 }
-.footer-cols p, .footer-cols a, .copyright { color: rgba(246, 238, 230, 0.62); }
-.footer-cols h3, .footer-cols a:hover { color: var(--rosegold); }
+.footer-cols p, .footer-cols a, .copyright { color: rgba(255, 250, 248, 0.85); }
+.footer-cols h3, .footer-cols a:hover { color: #fff; }
 
 /* Our Story page hero joins the wood */
 .story-hero {
   background:
-    radial-gradient(460px 420px at 78% 55%, rgba(242, 211, 196, 0.3), transparent 70%),
-    radial-gradient(1000px 300px at 50% 120%, rgba(202, 181, 186, 0.5), transparent 70%),
-    linear-gradient(180deg, var(--wood-deep), var(--wood-mid));
+    radial-gradient(460px 420px at 78% 55%, rgba(255, 236, 232, 0.35), transparent 70%),
+    linear-gradient(180deg, var(--wood-deep), var(--wood) 55%, var(--wood-mid));
   color: var(--cream);
   margin-bottom: 0;
 }
-.story-hero h1 { color: #fff7f2; }
+.story-hero h1 { color: #fff; }
 .story-welcome { color: var(--rosegold); }
 .story-hero-art {
   object-fit: contain;
