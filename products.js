@@ -50,6 +50,17 @@ const PRODUCTS = [
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
     stripeLink: "https://buy.stripe.com/eVqdRae5V3id1M8fco4AU03",
   },
+  {
+    id: "the-forage",
+    stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
+    stock: 3,
+    name: "The Forage Bracelet",
+    price: 38,
+    image: "assets/forage-bracelet.jpg",
+    summary: "Yellow jade, snow obsidian and tiger eye on a fine linked chain.",
+    description: "A delicate bracelet of yellow jade, snow obsidian and tiger eye, linked stone by stone along a fine chain, with stainless steel hardware. Easy to wear every day, alone or stacked.",
+    details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
