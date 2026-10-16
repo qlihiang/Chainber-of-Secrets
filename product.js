@@ -5,9 +5,7 @@ function renderProduct() {
   const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
 
   document.title = `${product.name} · Chainber of Secrets`;
-  const img = document.getElementById("pdp-img");
-  img.src = product.image;
-  img.alt = product.name;
+  renderGallery(product);
   document.getElementById("pdp-name").textContent = product.name;
   document.getElementById("pdp-price").textContent = formatPrice(product.price);
   document.getElementById("pdp-desc").textContent = product.description;
@@ -32,6 +30,49 @@ function renderProduct() {
 
   window.scrollTo(0, 0);
 }
+
+// Photo gallery: swipe (or scroll) through the photos; thumbnails jump to one.
+function renderGallery(product) {
+  const photos = product.images?.length ? product.images : [product.image];
+  const track = document.getElementById("pdp-track");
+  const thumbs = document.getElementById("pdp-thumbs");
+  track.innerHTML = photos.map((src, i) => `
+    <img src="${src}" alt="${i === 0 ? product.name : `${product.name}, photo ${i + 1}`}" width="1200" height="1600" ${i ? 'loading="lazy"' : ""}>
+  `).join("");
+  track.scrollLeft = 0;
+  thumbs.hidden = photos.length < 2;
+  thumbs.innerHTML = photos.map((src, i) => `
+    <button type="button" data-photo="${i}" aria-label="Show photo ${i + 1}" ${i === 0 ? 'aria-current="true"' : ""}>
+      <img src="${src}" alt="" width="1200" height="1600" loading="lazy">
+    </button>
+  `).join("");
+}
+
+function showPhoto(i) {
+  const track = document.getElementById("pdp-track");
+  track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+}
+
+document.getElementById("pdp-thumbs").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-photo]");
+  if (btn) showPhoto(Number(btn.dataset.photo));
+});
+
+document.getElementById("pdp-track").addEventListener("scroll", (e) => {
+  const track = e.currentTarget;
+  const current = Math.round(track.scrollLeft / track.clientWidth);
+  document.querySelectorAll("#pdp-thumbs [data-photo]").forEach((btn) => {
+    if (Number(btn.dataset.photo) === current) btn.setAttribute("aria-current", "true");
+    else btn.removeAttribute("aria-current");
+  });
+}, { passive: true });
+
+document.getElementById("pdp-track").addEventListener("keydown", (e) => {
+  const track = e.currentTarget;
+  const current = Math.round(track.scrollLeft / track.clientWidth);
+  if (e.key === "ArrowRight") showPhoto(Math.min(current + 1, track.children.length - 1));
+  if (e.key === "ArrowLeft") showPhoto(Math.max(current - 1, 0));
+});
 
 function updateBuyButton() {
   const buy = document.getElementById("pdp-buy");

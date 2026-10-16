@@ -6,6 +6,8 @@
 //   Update it by hand after a sale (the site doesn't count sales automatically).
 // `oneOfAKind: true` labels a unique piece "One of a kind" (use with stock: 1).
 // `maxPerOrder` (optional) caps how many one customer can buy, e.g. 2.
+// `images` (optional) lists extra photos for the product page gallery, main photo first;
+//   `image` is the one shown on the homepage.
 // `stripeLink` is the older single-item payment link, kept as a fallback.
 const PRODUCTS = [
   {
@@ -42,6 +44,7 @@ const PRODUCTS = [
     name: "The Sister Necklace",
     price: 118,
     image: "assets/sister-necklace.jpg",
+    images: ["assets/sister-necklace.jpg", "assets/sister-necklace-2.jpg", "assets/sister-necklace-3.jpg", "assets/sister-necklace-4.jpg"],
     summary: "Yellow jade, snow obsidian and tiger eye with a little bee charm.",
     description: "An asymmetric chain with yellow jade, snow obsidian and tiger eye gathered along one side, a bee charm hanging from a woven ring, and fine double chains with tiny drops on the other, with stainless steel hardware.",
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],

@@ -844,3 +844,32 @@ body.cart-open { overflow: hidden; }
 /* Thank-you page is short: leave room for the vines to fade out before the footer */
 .care-tips.thanks { min-height: 360px; }
 @media (max-width: 860px) { .care-tips.thanks { min-height: 0; } }
+
+/* Product photo gallery: a swipeable strip inside the arched frame, thumbnails below */
+.pdp-gallery { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.pdp-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  outline-offset: -3px;
+}
+.pdp-track::-webkit-scrollbar { display: none; }
+.pdp-track img { flex: 0 0 100%; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; scroll-snap-align: start; }
+.pdp-thumbs { display: flex; gap: 10px; justify-content: center; }
+.pdp-thumbs[hidden] { display: none; }
+.pdp-thumbs button {
+  width: 72px; padding: 0; border: 0; background: none; cursor: pointer;
+  border-radius: 12px; overflow: hidden; opacity: 0.55;
+  box-shadow: 0 0 0 1px rgba(205, 94, 119, 0.25);
+  transition: opacity 0.15s, box-shadow 0.15s;
+}
+.pdp-thumbs button:hover { opacity: 0.85; }
+.pdp-thumbs button[aria-current="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--plum); }
+.pdp-thumbs img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+@media (max-width: 860px) {
+  /* On phones the photos are swiped; small dots show which one is in view */
+  .pdp-thumbs button { width: 8px; height: 8px; border-radius: 50%; background: var(--dusk); box-shadow: none; opacity: 1; }
+  .pdp-thumbs button[aria-current="true"] { background: var(--plum); box-shadow: none; }
+  .pdp-thumbs img { display: none; }
+}
