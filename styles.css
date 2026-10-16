@@ -838,3 +838,9 @@ body.cart-open { overflow: hidden; }
   .nav-right a { display: none; }
   .nav-right { gap: 0; }
 }
+
+/* Short pages: keep the footer in front of the hanging vines */
+.site-footer { position: relative; z-index: 5; }
+/* Thank-you page is short: leave room for the vines to fade out before the footer */
+.care-tips.thanks { min-height: 360px; }
+@media (max-width: 860px) { .care-tips.thanks { min-height: 0; } }
