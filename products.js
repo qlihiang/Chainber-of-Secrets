@@ -38,7 +38,7 @@ const PRODUCTS = [
   },
   {
     id: "the-sister",
-    stripePriceId: "",
+    stripePriceId: "price_1URCm8JFPFLF0cf3rc21RoCi",
     stock: 1,
     oneOfAKind: true,
     name: "The Sister Necklace",
