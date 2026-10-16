@@ -62,6 +62,17 @@ const PRODUCTS = [
     description: "Inspired by the honey bees gather and store, drop by golden drop. Honey-coloured yellow jade sits beside snow obsidian and tiger eye, linked stone by stone along a fine chain like a little harvest carried home, with stainless steel hardware. Easy to wear every day, alone or stacked.",
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
   },
+  {
+    id: "the-forage",
+    stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
+    stock: 1,
+    name: "The Forage Bracelet",
+    price: 38,
+    image: "assets/forage-bracelet.jpg",
+    summary: "Little woven chainmaille blooms and a bee charm, all in stainless steel.",
+    description: "A bee out foraging from flower to flower: small chainmaille blooms are woven ring by ring and linked by open rings, with a little bee charm by the clasp, all in stainless steel. Light and shining, easy to wear every day, alone or stacked.",
+    details: ["Woven chainmaille blooms", "Bee charm", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
