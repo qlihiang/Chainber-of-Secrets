@@ -647,6 +647,9 @@ body {
   align-self: center;
   padding: 40px 0;
 }
+@media (max-width: 860px) {
+  .story-hero-art { max-width: 210px; max-height: none; padding: 12px 0 0; margin-bottom: 50px; }
+}
 
 @media (max-width: 860px) {
   #collection .product-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
@@ -661,12 +664,14 @@ body {
 .hero, .story-hero {
   -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent);
           mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent);
-  padding-bottom: 40px;
+  /* Room for the vines and the fade, so the logo sits wholly in the pink */
+  padding-bottom: 110px;
 }
 @media (max-width: 860px) {
   .hero, .story-hero {
     -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
             mask-image: linear-gradient(180deg, #000 calc(100% - 70px), transparent);
+    padding-bottom: 70px;
   }
 }
 
