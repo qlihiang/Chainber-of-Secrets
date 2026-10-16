@@ -87,6 +87,9 @@ module.exports = async function handler(req, res) {
     res.status(200).json({ url: session.url });
   } catch (err) {
     console.error("checkout failed:", err.message);
-    fail(res, 502, "We couldn't start checkout. Please try again in a moment.");
+    const friendly = "We couldn't start checkout. Please try again in a moment.";
+    // On preview deployments, show Stripe's reason to make setup problems easy to spot.
+    const detail = process.env.VERCEL_ENV === "preview" ? ` (Stripe: ${err.message})` : "";
+    fail(res, 502, friendly + detail);
   }
 };
