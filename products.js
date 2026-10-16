@@ -34,6 +34,19 @@ const PRODUCTS = [
     details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
     stripeLink: "https://buy.stripe.com/28EaEY0f5f0V62o0hu4AU01",
   },
+  {
+    id: "the-sister",
+    stripePriceId: "",
+    stock: 1,
+    oneOfAKind: true,
+    name: "The Sister Necklace",
+    price: 118,
+    image: "assets/sister-necklace.jpg",
+    summary: "Yellow jade, snow obsidian and tiger eye with a little bee charm.",
+    description: "An asymmetric chain with yellow jade, snow obsidian and tiger eye gathered along one side, a bee charm hanging from a woven ring, and fine double chains with tiny drops on the other, with stainless steel hardware.",
+    details: ["Yellow jade", "Snow obsidian", "Tiger eye", "Stainless steel hardware"],
+    stripeLink: "https://buy.stripe.com/eVqdRae5V3id1M8fco4AU03",
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
