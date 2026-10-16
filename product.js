@@ -13,19 +13,8 @@ function renderProduct() {
   document.getElementById("pdp-desc").textContent = product.description;
   document.getElementById("pdp-details").innerHTML = product.details.map((d) => `<li>${d}</li>`).join("");
 
-  const buy = document.getElementById("pdp-buy");
-  const note = document.getElementById("pdp-note");
-  if (product.stripeLink) {
-    buy.href = product.stripeLink;
-    buy.textContent = "Buy now";
-    buy.removeAttribute("aria-disabled");
-    note.textContent = "Secure checkout with Stripe";
-  } else {
-    buy.removeAttribute("href");
-    buy.textContent = "Coming soon";
-    buy.setAttribute("aria-disabled", "true");
-    note.textContent = "Checkout for this piece opens soon.";
-  }
+  document.getElementById("pdp-buy").dataset.id = product.id;
+  updateBuyButton();
 
   const others = PRODUCTS.filter((p) => p.id !== product.id);
   document.querySelector(".more").hidden = others.length === 0;
@@ -42,6 +31,38 @@ function renderProduct() {
 
   window.scrollTo(0, 0);
 }
+
+function updateBuyButton() {
+  const buy = document.getElementById("pdp-buy");
+  const note = document.getElementById("pdp-note");
+  const product = PRODUCTS.find((p) => p.id === buy.dataset.id);
+  const inBag = Cart.qtyOf(product.id);
+  const max = product.maxQty || 1;
+  buy.disabled = false;
+  if (product.soldOut) {
+    buy.textContent = "Sold out";
+    buy.disabled = true;
+    note.textContent = "This piece has found its home.";
+  } else if (!Cart.canBuy(product)) {
+    buy.textContent = "Coming soon";
+    buy.disabled = true;
+    note.textContent = "Checkout for this piece opens soon.";
+  } else if (inBag >= max) {
+    buy.textContent = "In your bag · View bag";
+    note.textContent = max === 1 ? "One of a kind: only one available." : `Up to ${max} per order.`;
+  } else {
+    buy.textContent = "Add to bag";
+    note.textContent = "Secure checkout with Stripe · Ships within Singapore";
+  }
+}
+
+document.getElementById("pdp-buy").addEventListener("click", (e) => {
+  const id = e.currentTarget.dataset.id;
+  const product = PRODUCTS.find((p) => p.id === id);
+  if (Cart.qtyOf(id) < (product.maxQty || 1)) Cart.add(id);
+  window.openCart();
+});
+Cart.onChange(updateBuyButton);
 
 renderProduct();
 window.addEventListener("hashchange", renderProduct);

@@ -1,9 +1,16 @@
 // Product catalog. To add a product, copy one entry and change its details.
 // `id` appears in the product page link (product.html#id), so keep it lowercase with dashes.
-// `stripeLink` is the product's Stripe payment link; leave it empty until it exists.
+// `stripePriceId` is the product's Price ID from Stripe (starts with "price_"); the
+// checkout uses Stripe's price, so the amount here is only for display.
+// `maxQty` is how many one customer can buy: 1 for one-of-a-kind pieces.
+// `soldOut: true` shows the piece as sold out and stops it being added to the cart.
+// `stripeLink` is the older single-item payment link, kept as a fallback.
 const PRODUCTS = [
   {
     id: "the-protector",
+    stripePriceId: "",
+    maxQty: 1,
+    soldOut: false,
     name: "The Protector Necklace",
     price: 138,
     image: "assets/rose-quartz-heart.jpg",
@@ -14,6 +21,9 @@ const PRODUCTS = [
   },
   {
     id: "the-queen",
+    stripePriceId: "",
+    maxQty: 1,
+    soldOut: false,
     name: "The Queen Necklace",
     price: 128,
     image: "assets/bee-charm.jpg",
@@ -24,6 +34,16 @@ const PRODUCTS = [
   },
 ];
 
+// Shop-wide settings, used by the cart and by the checkout on the server.
+const SHOP = {
+  currency: "sgd",
+  shipToCountries: ["SG"],
+  shippingFee: null,        // flat shipping fee in dollars, e.g. 5
+  freeShippingOver: null,   // orders at or above this (in dollars) ship free, e.g. 150
+};
+
 function formatPrice(amount) {
   return amount == null ? "Price coming soon" : `$${amount}`;
 }
+
+if (typeof module !== "undefined") module.exports = { PRODUCTS, SHOP };
