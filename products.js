@@ -132,6 +132,17 @@ const PRODUCTS = [
     description: "Like bluebells in a woodland clearing: deep-blue kyanite, soft moonstone and faceted crystal beads bloom along one strand, around a crackled clear quartz that catches the light like morning frost. A second fine chain sits alongside, with stainless steel hardware and a clear crystal sparkling at the clasp.",
     details: ["Kyanite", "Clear quartz", "Moonstone", "Stainless steel hardware"],
   },
+  {
+    id: "the-frost",
+    stripePriceId: "price_1URqBEJFPFLF0cf3qPr8W7Ht",
+    stock: 1,
+    name: "The Frost Bracelet",
+    price: 60,
+    image: "assets/frost-bracelet.jpg",
+    summary: "Icy aquamarine and crackled clear quartz, like the first frost on a winter morning.",
+    description: "The first frost of a winter morning: faceted aquamarine in pale sea-glass blue sits beside sparkling crystal and moonstone, around a crackled clear quartz that looks like ice holding the light, with stainless steel hardware and a clear crystal glinting at the clasp.",
+    details: ["Aquamarine", "Clear quartz", "Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
