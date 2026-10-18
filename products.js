@@ -88,6 +88,17 @@ const PRODUCTS = [
     description: "Like morning dew caught on a leaf: a moonstone bracelet that trails a fine chain across the back of the hand to a ring on the finger, with one deep-blue kyanite resting in the middle like a drop that holds the sky, with stainless steel hardware. A clear crystal sparkles at the clasp.",
     details: ["Moonstone", "Kyanite", "Stainless steel hardware"],
   },
+  {
+    id: "the-wisp",
+    stripePriceId: "price_1URpudJFPFLF0cf3RoYvWnBj",
+    stock: 3,
+    name: "The Wisp Bracelet",
+    price: 60,
+    image: "assets/wisp-bracelet.jpg",
+    summary: "Labradorite with a hidden flash of blue light, like a wisp in the woods.",
+    description: "Named after the will-o'-the-wisp, the little lights said to lead wanderers through enchanted woods. Labradorite chips glimmer along a fine chain around one round labradorite held in silver filigree caps, each stone hiding a flash of blue that appears only when the light finds it, with stainless steel hardware. A clear crystal sparkles at the clasp.",
+    details: ["Labradorite", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
