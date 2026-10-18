@@ -99,6 +99,17 @@ const PRODUCTS = [
     description: "Named after the will-o'-the-wisp, the little lights said to lead wanderers through enchanted woods. Labradorite chips glimmer along a fine chain around one round labradorite held in silver filigree caps, each stone hiding a flash of blue that appears only when the light finds it, with stainless steel hardware. A clear crystal sparkles at the clasp.",
     details: ["Labradorite", "Stainless steel hardware"],
   },
+  {
+    id: "the-prism",
+    stripePriceId: "price_1URq12JFPFLF0cf3ePU8lAuE",
+    stock: 2,
+    name: "The Prism Bracelet",
+    price: 50,
+    image: "assets/prism-bracelet.jpg",
+    summary: "Clear quartz, moonstone and kyanite around a crystal that throws little rainbows.",
+    description: "Made to catch the sun: a clear crystal hangs from a woven chainmaille link at the centre, scattering tiny rainbows as you move. Crackled clear quartz, soft moonstone and deep-blue kyanite are spaced along a fine chain on either side, with stainless steel hardware and another crystal sparkling at the clasp.",
+    details: ["Kyanite", "Clear quartz", "Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
