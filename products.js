@@ -178,6 +178,18 @@ const PRODUCTS = [
     description: "A spell woven at the collarbone: a glowing moonstone teardrop in a sparkling halo hangs from a woven chainmaille knot, framed by tiers of fine chain strung with moonstone, deep-blue kyanite and crystal, and finished with a chainmaille point and a crystal drop, with stainless steel hardware.",
     details: ["Moonstone", "Kyanite", "Stainless steel hardware"],
   },
+  {
+    id: "the-muse",
+    stripePriceId: "price_1URqTuJFPFLF0cf3xYmOXrVG",
+    stock: 1,
+    name: "The Muse Necklace",
+    price: 118,
+    image: "assets/muse-necklace.jpg",
+    images: ["assets/muse-necklace.jpg", "assets/muse-necklace-2.jpg"],
+    summary: "A glowing moonstone teardrop with draped chains and moonstone drops.",
+    description: "The one who inspires, with a single glowing stone at her heart: a moonstone teardrop in a sparkling halo hangs from a bold curb chain, framed by soft swags of fine chain and little moonstone drops that sway like lanterns, with stainless steel hardware.",
+    details: ["Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
