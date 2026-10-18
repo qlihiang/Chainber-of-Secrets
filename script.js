@@ -40,8 +40,8 @@ if (grid) {
     grid.innerHTML = shown.map(card).join("");
     emptyEl.hidden = shown.length > 0;
     filtersEl.innerHTML =
-      chips("Type", "type", TYPES, f.type) +
-      (COLLECTIONS.length ? chips("Collection", "collection", COLLECTIONS, f.collection) : "");
+      (COLLECTIONS.length ? chips("Collection", "collection", COLLECTIONS, f.collection) : "") +
+      chips("Type", "type", TYPES, f.type);
   }
 
   function setFilter(key, value) {
