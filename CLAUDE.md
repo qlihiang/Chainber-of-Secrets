@@ -19,6 +19,9 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
 - `success.html`: thank-you page after payment; clears the cart.
 - Per product in `products.js`: `stripePriceId`, `stock` (0 = sold out; update by hand after
   sales), `oneOfAKind` (label + one per order), optional `maxPerOrder`.
+- Shop filters on the homepage: each product has `type` (necklace/bracelet) and optional
+  `collection` (an id from `COLLECTIONS` in `products.js`). Filters live in the URL,
+  e.g. `index.html?type=necklace#collection`. The collection row appears once a collection exists.
 
 ## Where things live
 - `products.js`: product catalog (name, price, image, materials, Stripe link).

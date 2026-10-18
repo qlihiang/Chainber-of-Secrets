@@ -8,10 +8,13 @@
 // `maxPerOrder` (optional) caps how many one customer can buy, e.g. 2.
 // `images` (optional) lists extra photos for the product page gallery, main photo first;
 //   `image` is the one shown on the homepage.
+// `type` is "necklace" or "bracelet" (hand chains count as bracelets); used by the Shop filters.
+// `collection` (optional) is the id of one of the COLLECTIONS below.
 // `stripeLink` is the older single-item payment link, kept as a fallback.
 const PRODUCTS = [
   {
     id: "the-protector",
+    type: "necklace",
     stripePriceId: "price_1UQpAAJFPFLF0cf3CF9Qveql",
     stock: 1,
     oneOfAKind: true,
@@ -26,6 +29,7 @@ const PRODUCTS = [
   },
   {
     id: "the-queen",
+    type: "necklace",
     stripePriceId: "price_1UQp1MJFPFLF0cf36HVBHpp2",
     stock: 1,
     oneOfAKind: true,
@@ -40,6 +44,7 @@ const PRODUCTS = [
   },
   {
     id: "the-sister",
+    type: "necklace",
     stripePriceId: "price_1URCm8JFPFLF0cf3rc21RoCi",
     stock: 1,
     oneOfAKind: true,
@@ -54,6 +59,7 @@ const PRODUCTS = [
   },
   {
     id: "the-harvest",
+    type: "bracelet",
     stripePriceId: "price_1URD99JFPFLF0cf3oof44Zr5",
     stock: 3,
     name: "The Harvest Bracelet",
@@ -66,6 +72,7 @@ const PRODUCTS = [
   },
   {
     id: "the-forage",
+    type: "bracelet",
     stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
     stock: 2,
     name: "The Forage Bracelet",
@@ -78,6 +85,7 @@ const PRODUCTS = [
   },
   {
     id: "the-dewdrop",
+    type: "bracelet",
     stripePriceId: "price_1URppCJFPFLF0cf3s84Izod9",
     stock: 4,
     name: "The Dewdrop Hand Chain",
@@ -90,6 +98,7 @@ const PRODUCTS = [
   },
   {
     id: "the-wisp",
+    type: "bracelet",
     stripePriceId: "price_1URpudJFPFLF0cf3RoYvWnBj",
     stock: 3,
     name: "The Wisp Bracelet",
@@ -101,6 +110,7 @@ const PRODUCTS = [
   },
   {
     id: "the-prism",
+    type: "bracelet",
     stripePriceId: "price_1URq12JFPFLF0cf3ePU8lAuE",
     stock: 2,
     name: "The Prism Bracelet",
@@ -112,6 +122,7 @@ const PRODUCTS = [
   },
   {
     id: "the-tide",
+    type: "bracelet",
     stripePriceId: "price_1URq5dJFPFLF0cf3Iv4h4n8Q",
     stock: 2,
     name: "The Tide Bracelet",
@@ -123,6 +134,7 @@ const PRODUCTS = [
   },
   {
     id: "the-bluebell",
+    type: "bracelet",
     stripePriceId: "price_1URq8DJFPFLF0cf3P2aDqPY3",
     stock: 2,
     name: "The Bluebell Bracelet",
@@ -134,6 +146,7 @@ const PRODUCTS = [
   },
   {
     id: "the-frost",
+    type: "bracelet",
     stripePriceId: "price_1URqBEJFPFLF0cf3qPr8W7Ht",
     stock: 1,
     name: "The Frost Bracelet",
@@ -145,6 +158,7 @@ const PRODUCTS = [
   },
   {
     id: "the-lagoon",
+    type: "bracelet",
     stripePriceId: "price_1URqEmJFPFLF0cf3N7yry09Z",
     stock: 3,
     name: "The Lagoon Bracelet",
@@ -156,6 +170,7 @@ const PRODUCTS = [
   },
   {
     id: "the-coquette",
+    type: "necklace",
     stripePriceId: "price_1URqLVJFPFLF0cf3aW1jzA6D",
     stock: 1,
     oneOfAKind: true,
@@ -169,6 +184,7 @@ const PRODUCTS = [
   },
   {
     id: "the-enchantress",
+    type: "necklace",
     stripePriceId: "price_1URqRbJFPFLF0cf3VSeGxtya",
     stock: 1,
     oneOfAKind: true,
@@ -182,6 +198,7 @@ const PRODUCTS = [
   },
   {
     id: "the-muse",
+    type: "necklace",
     stripePriceId: "price_1URqTuJFPFLF0cf3xYmOXrVG",
     stock: 1,
     oneOfAKind: true,
@@ -193,6 +210,18 @@ const PRODUCTS = [
     description: "The one who inspires, with a single glowing stone at her heart: a moonstone teardrop in a sparkling halo hangs from a bold curb chain, framed by soft swags of fine chain and little moonstone drops that sway like lanterns, with stainless steel hardware.",
     details: ["Moonstone", "Stainless steel hardware"],
   },
+];
+
+// Collections for "Shop by collection". Add one here, then set `collection: "<id>"`
+// on its products. The collection filter only shows once at least one exists.
+const COLLECTIONS = [
+  // { id: "moonlit", name: "Moonlit" },
+];
+
+// Product types for "Shop by type".
+const TYPES = [
+  { id: "necklace", name: "Necklaces" },
+  { id: "bracelet", name: "Bracelets" },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
@@ -213,4 +242,4 @@ function maxPerCustomer(product) {
   return product.maxPerOrder ? Math.min(stock, product.maxPerOrder) : stock;
 }
 
-if (typeof module !== "undefined") module.exports = { PRODUCTS, SHOP, maxPerCustomer };
+if (typeof module !== "undefined") module.exports = { PRODUCTS, SHOP, COLLECTIONS, TYPES, maxPerCustomer };

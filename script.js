@@ -2,7 +2,17 @@
 
 const grid = document.getElementById("product-grid");
 if (grid) {
-  grid.innerHTML = PRODUCTS.map((p) => `
+  const filtersEl = document.getElementById("shop-filters");
+  const emptyEl = document.getElementById("shop-empty");
+
+  // Current filters live in the address (?type=necklace&collection=...), so links can point to them.
+  const readFilters = () => {
+    const q = new URLSearchParams(location.search);
+    return { type: q.get("type") || "", collection: q.get("collection") || "" };
+  };
+
+  function card(p) {
+    return `
     <a href="product.html#${p.id}" class="product">
       <div class="product-image">
         ${(p.stock ?? 0) === 0 ? `<span class="badge">Sold out</span>` : p.badge ? `<span class="badge">${p.badge}</span>` : ""}
@@ -11,8 +21,48 @@ if (grid) {
       <h3>${p.name}</h3>
       <p class="product-summary">${p.summary}</p>
       <p class="price">${formatPrice(p.price)}</p>
-    </a>
-  `).join("");
+    </a>`;
+  }
+
+  function chips(label, key, options, current) {
+    return `
+      <div class="filter-row" role="group" aria-label="Shop by ${label.toLowerCase()}">
+        <span class="filter-label">${label}</span>
+        <button type="button" class="chip" data-key="${key}" data-value="" aria-pressed="${!current}">All</button>
+        ${options.map((o) => `<button type="button" class="chip" data-key="${key}" data-value="${o.id}" aria-pressed="${current === o.id}">${o.name}</button>`).join("")}
+      </div>`;
+  }
+
+  function render() {
+    const f = readFilters();
+    const shown = PRODUCTS.filter((p) =>
+      (!f.type || p.type === f.type) && (!f.collection || p.collection === f.collection));
+    grid.innerHTML = shown.map(card).join("");
+    emptyEl.hidden = shown.length > 0;
+    filtersEl.innerHTML =
+      chips("Type", "type", TYPES, f.type) +
+      (COLLECTIONS.length ? chips("Collection", "collection", COLLECTIONS, f.collection) : "");
+  }
+
+  function setFilter(key, value) {
+    const q = new URLSearchParams(location.search);
+    if (value) q.set(key, value); else q.delete(key);
+    const search = q.toString();
+    history.replaceState(null, "", `${location.pathname}${search ? `?${search}` : ""}#collection`);
+    render();
+  }
+
+  filtersEl.addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (chip) setFilter(chip.dataset.key, chip.dataset.value);
+  });
+  emptyEl.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-filter-reset]")) return;
+    e.preventDefault();
+    history.replaceState(null, "", `${location.pathname}#collection`);
+    render();
+  });
+  render();
 }
 
 const toggle = document.querySelector(".menu-toggle");

@@ -878,3 +878,30 @@ body.cart-open { overflow: hidden; }
 .footer-brand p + p { margin-top: 6px; }
 .footer-email { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(251, 232, 166, 0.5); }
 .footer-email:hover { color: var(--butter); }
+
+/* Shop by type / collection: soft pill filters above the grid */
+.shop-filters { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: -12px auto 36px; }
+.filter-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
+.filter-label {
+  font-family: var(--sans); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin-right: 6px;
+}
+.chip {
+  font: 500 0.9rem var(--sans);
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(205, 94, 119, 0.35);
+  background: var(--petal);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.chip:hover { border-color: var(--plum); }
+.chip[aria-pressed="true"] { background: var(--plum); border-color: var(--plum); color: #fff; }
+.shop-empty { text-align: center; color: var(--muted); padding: 24px 0 48px; }
+.shop-empty a { color: var(--plum); text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 860px) {
+  .shop-filters { margin: -8px auto 24px; }
+  .filter-label { width: 100%; text-align: center; margin: 0 0 2px; }
+  .chip { padding: 7px 14px; font-size: 0.85rem; }
+}
