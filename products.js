@@ -76,6 +76,18 @@ const PRODUCTS = [
     description: "A bee out foraging from flower to flower: small chainmaille blooms are woven ring by ring and linked by open rings, with a little bee charm by the clasp, all in stainless steel. Light and shining, easy to wear every day, alone or stacked.",
     details: ["Woven chainmaille blooms", "Bee charm", "Stainless steel hardware"],
   },
+  {
+    id: "the-dewdrop",
+    stripePriceId: "price_1URppCJFPFLF0cf3s84Izod9",
+    stock: 4,
+    name: "The Dewdrop Hand Chain",
+    price: 50,
+    image: "assets/dewdrop-hand-chain.jpg",
+    images: ["assets/dewdrop-hand-chain.jpg", "assets/dewdrop-hand-chain-2.jpg", "assets/dewdrop-hand-chain-3.jpg"],
+    summary: "Moonstone and a single kyanite drop, from wrist to finger.",
+    description: "Like morning dew caught on a leaf: a moonstone bracelet that trails a fine chain across the back of the hand to a ring on the finger, with one deep-blue kyanite resting in the middle like a drop that holds the sky, with stainless steel hardware. A clear crystal sparkles at the clasp.",
+    details: ["Moonstone", "Kyanite", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
