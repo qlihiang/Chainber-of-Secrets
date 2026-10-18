@@ -86,6 +86,7 @@ const PRODUCTS = [
   {
     id: "the-dewdrop",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URppCJFPFLF0cf3s84Izod9",
     stock: 4,
     name: "The Dewdrop Hand Chain",
@@ -99,6 +100,7 @@ const PRODUCTS = [
   {
     id: "the-wisp",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URpudJFPFLF0cf3RoYvWnBj",
     stock: 3,
     name: "The Wisp Bracelet",
@@ -111,6 +113,7 @@ const PRODUCTS = [
   {
     id: "the-prism",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URq12JFPFLF0cf3ePU8lAuE",
     stock: 2,
     name: "The Prism Bracelet",
@@ -123,6 +126,7 @@ const PRODUCTS = [
   {
     id: "the-tide",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URq5dJFPFLF0cf3Iv4h4n8Q",
     stock: 2,
     name: "The Tide Bracelet",
@@ -135,6 +139,7 @@ const PRODUCTS = [
   {
     id: "the-bluebell",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URq8DJFPFLF0cf3P2aDqPY3",
     stock: 2,
     name: "The Bluebell Bracelet",
@@ -147,6 +152,7 @@ const PRODUCTS = [
   {
     id: "the-frost",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URqBEJFPFLF0cf3qPr8W7Ht",
     stock: 1,
     name: "The Frost Bracelet",
@@ -159,6 +165,7 @@ const PRODUCTS = [
   {
     id: "the-lagoon",
     type: "bracelet",
+    collection: "moonlit",
     stripePriceId: "price_1URqEmJFPFLF0cf3N7yry09Z",
     stock: 3,
     name: "The Lagoon Bracelet",
@@ -171,6 +178,7 @@ const PRODUCTS = [
   {
     id: "the-coquette",
     type: "necklace",
+    collection: "moonlit",
     stripePriceId: "price_1URqLVJFPFLF0cf3aW1jzA6D",
     stock: 1,
     oneOfAKind: true,
@@ -185,6 +193,7 @@ const PRODUCTS = [
   {
     id: "the-enchantress",
     type: "necklace",
+    collection: "moonlit",
     stripePriceId: "price_1URqRbJFPFLF0cf3VSeGxtya",
     stock: 1,
     oneOfAKind: true,
@@ -199,6 +208,7 @@ const PRODUCTS = [
   {
     id: "the-muse",
     type: "necklace",
+    collection: "moonlit",
     stripePriceId: "price_1URqTuJFPFLF0cf3xYmOXrVG",
     stock: 1,
     oneOfAKind: true,
@@ -215,7 +225,7 @@ const PRODUCTS = [
 // Collections for "Shop by collection". Add one here, then set `collection: "<id>"`
 // on its products. The collection filter only shows once at least one exists.
 const COLLECTIONS = [
-  // { id: "moonlit", name: "Moonlit" },
+  { id: "moonlit", name: "Moonlit" },
 ];
 
 // Product types for "Shop by type".
