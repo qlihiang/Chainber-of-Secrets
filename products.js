@@ -121,6 +121,17 @@ const PRODUCTS = [
     description: "Blue and white, coming and going like the tide: deep-blue kyanite and milky moonstone take turns along a fine chain, gathered at one side by a woven chainmaille knot, with stainless steel hardware and a clear crystal sparkling at the clasp.",
     details: ["Kyanite", "Moonstone", "Stainless steel hardware"],
   },
+  {
+    id: "the-bluebell",
+    stripePriceId: "price_1URq8DJFPFLF0cf3P2aDqPY3",
+    stock: 2,
+    name: "The Bluebell Bracelet",
+    price: 50,
+    image: "assets/bluebell-bracelet.jpg",
+    summary: "Kyanite, moonstone and a crackled clear quartz on two fine strands.",
+    description: "Like bluebells in a woodland clearing: deep-blue kyanite, soft moonstone and faceted crystal beads bloom along one strand, around a crackled clear quartz that catches the light like morning frost. A second fine chain sits alongside, with stainless steel hardware and a clear crystal sparkling at the clasp.",
+    details: ["Kyanite", "Clear quartz", "Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
