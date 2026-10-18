@@ -166,6 +166,18 @@ const PRODUCTS = [
     description: "Tied like a ribbon bow at the collarbone: labradorite chips loop into two soft swags and fall in two trailing tails finished with tiny crystal drops. Each stone hides a flash of blue that appears only when the light finds it, with stainless steel hardware.",
     details: ["Labradorite", "Ribbon bow design", "Stainless steel hardware"],
   },
+  {
+    id: "the-enchantress",
+    stripePriceId: "price_1URqRbJFPFLF0cf3VSeGxtya",
+    stock: 1,
+    name: "The Enchantress Necklace",
+    price: 128,
+    image: "assets/enchantress-necklace.jpg",
+    images: ["assets/enchantress-necklace.jpg", "assets/enchantress-necklace-2.jpg"],
+    summary: "A moonstone teardrop in a halo, with tiers of chain and blue kyanite.",
+    description: "A spell woven at the collarbone: a glowing moonstone teardrop in a sparkling halo hangs from a woven chainmaille knot, framed by tiers of fine chain strung with moonstone, deep-blue kyanite and crystal, and finished with a chainmaille point and a crystal drop, with stainless steel hardware.",
+    details: ["Moonstone", "Kyanite", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
