@@ -92,7 +92,11 @@ function updateBuyButton() {
     note.textContent = "Checkout for this piece opens soon.";
   } else if (inBag >= max) {
     buy.textContent = "In your bag · View bag";
-    note.textContent = product.oneOfAKind ? "One of a kind: only one available." : `That's the most available per order (${max}).`;
+    note.textContent = product.oneOfAKind
+      ? "One of a kind: only one available."
+      : max === stock
+        ? (stock === 1 ? "The last one is in your bag." : `All ${stock} are in your bag.`)
+        : `That's the most available per order (${max}).`;
   } else {
     buy.textContent = inBag ? `Add another · ${inBag} in bag` : "Add to bag";
     note.textContent = product.oneOfAKind
