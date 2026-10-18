@@ -161,6 +161,7 @@ const PRODUCTS = [
     name: "The Coquette Necklace",
     price: 118,
     image: "assets/coquette-necklace.jpg",
+    images: ["assets/coquette-necklace.jpg", "assets/coquette-necklace-2.jpg"],
     summary: "A ribbon bow of labradorite, with two trailing tails that catch the light.",
     description: "Tied like a ribbon bow at the collarbone: labradorite chips loop into two soft swags and fall in two trailing tails finished with tiny crystal drops. Each stone hides a flash of blue that appears only when the light finds it, with stainless steel hardware.",
     details: ["Labradorite", "Ribbon bow design", "Stainless steel hardware"],
