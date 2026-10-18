@@ -143,6 +143,17 @@ const PRODUCTS = [
     description: "The first frost of a winter morning: faceted aquamarine in pale sea-glass blue sits beside sparkling crystal and moonstone, around a crackled clear quartz that looks like ice holding the light, with stainless steel hardware and a clear crystal glinting at the clasp.",
     details: ["Aquamarine", "Clear quartz", "Moonstone", "Stainless steel hardware"],
   },
+  {
+    id: "the-lagoon",
+    stripePriceId: "price_1URqEmJFPFLF0cf3N7yry09Z",
+    stock: 3,
+    name: "The Lagoon Bracelet",
+    price: 60,
+    image: "assets/lagoon-bracelet.jpg",
+    summary: "Sea-blue larimar and sparkling crystal, like sunlight in a hidden cove.",
+    description: "A hidden cove where the water turns the brightest blue: larimar with soft white ripples, like light dancing on shallow water, is spaced along a fine chain between clear quartz, moonstone and faceted crystal, gathered by a woven chainmaille knot, with stainless steel hardware and a clear crystal sparkling at the clasp.",
+    details: ["Processed larimar", "Clear quartz", "Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
