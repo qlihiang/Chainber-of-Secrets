@@ -154,6 +154,17 @@ const PRODUCTS = [
     description: "A hidden cove where the water turns the brightest blue: larimar with soft white ripples, like light dancing on shallow water, is spaced along a fine chain between clear quartz, moonstone and faceted crystal, gathered by a woven chainmaille knot, with stainless steel hardware and a clear crystal sparkling at the clasp.",
     details: ["Processed larimar", "Clear quartz", "Moonstone", "Stainless steel hardware"],
   },
+  {
+    id: "the-coquette",
+    stripePriceId: "price_1URqLVJFPFLF0cf3aW1jzA6D",
+    stock: 1,
+    name: "The Coquette Necklace",
+    price: 118,
+    image: "assets/coquette-necklace.jpg",
+    summary: "A ribbon bow of labradorite, with two trailing tails that catch the light.",
+    description: "Tied like a ribbon bow at the collarbone: labradorite chips loop into two soft swags and fall in two trailing tails finished with tiny crystal drops. Each stone hides a flash of blue that appears only when the light finds it, with stainless steel hardware.",
+    details: ["Labradorite", "Ribbon bow design", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
