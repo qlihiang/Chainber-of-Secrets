@@ -110,6 +110,17 @@ const PRODUCTS = [
     description: "Made to catch the sun: a clear crystal hangs from a woven chainmaille link at the centre, scattering tiny rainbows as you move. Crackled clear quartz, soft moonstone and deep-blue kyanite are spaced along a fine chain on either side, with stainless steel hardware and another crystal sparkling at the clasp.",
     details: ["Kyanite", "Clear quartz", "Moonstone", "Stainless steel hardware"],
   },
+  {
+    id: "the-tide",
+    stripePriceId: "price_1URq5dJFPFLF0cf3Iv4h4n8Q",
+    stock: 2,
+    name: "The Tide Bracelet",
+    price: 50,
+    image: "assets/tide-bracelet.jpg",
+    summary: "Deep-blue kyanite and milky moonstone, rolling in and out like waves.",
+    description: "Blue and white, coming and going like the tide: deep-blue kyanite and milky moonstone take turns along a fine chain, gathered at one side by a woven chainmaille knot, with stainless steel hardware and a clear crystal sparkling at the clasp.",
+    details: ["Kyanite", "Moonstone", "Stainless steel hardware"],
+  },
 ];
 
 // Shop-wide settings, used by the cart and by the checkout on the server.
