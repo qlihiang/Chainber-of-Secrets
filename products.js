@@ -30,6 +30,7 @@ const PRODUCTS = [
   {
     id: "the-queen",
     type: "necklace",
+    collection: "golden-hour",
     stripePriceId: "price_1UQp1MJFPFLF0cf36HVBHpp2",
     stock: 1,
     oneOfAKind: true,
@@ -45,6 +46,7 @@ const PRODUCTS = [
   {
     id: "the-sister",
     type: "necklace",
+    collection: "golden-hour",
     stripePriceId: "price_1URCm8JFPFLF0cf3rc21RoCi",
     stock: 1,
     oneOfAKind: true,
@@ -60,6 +62,7 @@ const PRODUCTS = [
   {
     id: "the-harvest",
     type: "bracelet",
+    collection: "golden-hour",
     stripePriceId: "price_1URD99JFPFLF0cf3oof44Zr5",
     stock: 3,
     name: "The Harvest Bracelet",
@@ -73,6 +76,7 @@ const PRODUCTS = [
   {
     id: "the-forage",
     type: "bracelet",
+    collection: "golden-hour",
     stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
     stock: 2,
     name: "The Forage Bracelet",
@@ -226,6 +230,7 @@ const PRODUCTS = [
 // on its products. The collection filter only shows once at least one exists.
 const COLLECTIONS = [
   { id: "moonlit", name: "Moonlit" },
+  { id: "golden-hour", name: "Golden Hour" },
 ];
 
 // Product types for "Shop by type".
