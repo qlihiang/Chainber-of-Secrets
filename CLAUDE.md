@@ -25,7 +25,8 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
 
 ## Where things live
 - `products.js`: product catalog (name, price, image, materials, Stripe link).
-- `index.html`, `product.html` (`product.html#<id>`), `our-story.html`, `jewellery-care.html`.
+- `index.html`, `product.html` (`product.html#<id>`), `our-story.html`, `jewellery-care.html`,
+  `shipping.html`, `returns.html` (policy pages; keep fees in sync with `SHOP`).
 - `styles.css`: base styles (baby pink palette), then the "Rose canopy" theme section.
 - `assets/vines-back.webp`, `assets/vines-front.webp`: pre-rendered hanging vines (rose).
 - `assets/logo-light.png`: white logo used on the pink header/hero/footer.

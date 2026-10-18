@@ -905,3 +905,10 @@ body.cart-open { overflow: hidden; }
   .filter-label { width: 100%; text-align: center; margin: 0 0 2px; }
   .chip { padding: 7px 14px; font-size: 0.85rem; }
 }
+
+/* Shipping and Returns pages */
+.policy h2 { font-size: 1.9rem; margin: 18px 0 2px; color: var(--ink); }
+.policy ul, .policy ol { padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
+.policy li::marker { color: var(--plum); }
+.policy a:not(.btn) { color: var(--plum); text-decoration: underline; text-underline-offset: 3px; }
+.policy-contact { margin-top: 12px; padding: 18px 22px; border-radius: var(--radius); background: var(--petal); }
