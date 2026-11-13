@@ -17,6 +17,11 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
   `products.js`, reads real prices from Stripe by `stripePriceId`, applies the
   shipping rule in `SHOP`, and creates a Stripe Checkout Session (SGD, Singapore only).
 - `success.html`: thank-you page after payment; clears the cart.
+- `api/stripe-webhook.js`: Stripe webhook (checkout.session.completed and
+  checkout.session.async_payment_succeeded) that emails an order summary to
+  chainberofsecrets@gmail.com via Resend. Needs `STRIPE_WEBHOOK_SECRET` and
+  `RESEND_API_KEY` in Vercel (never in the repo); the webhook endpoint is
+  https://chainberofsecrets.com/api/stripe-webhook.
 - Per product in `products.js`: `stripePriceId`, `stock` (0 = sold out; update by hand after
   sales), `oneOfAKind` (label + one per order), optional `maxPerOrder`.
 - Shop filters on the homepage: each product has `type` (necklace/bracelet) and optional
