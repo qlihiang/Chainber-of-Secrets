@@ -10,6 +10,7 @@
 // `maxPerOrder` (optional) caps how many one customer can buy, e.g. 2.
 // `images` (optional) lists extra photos for the product page gallery, main photo first;
 //   `image` is the one shown on the homepage.
+// `sku` is the stock-keeping code (COS-NK-.. necklaces, COS-BR-.. bracelets); never reuse one.
 // `type` is "necklace" or "bracelet" (hand chains count as bracelets); used by the Shop filters.
 // `collection` (optional) is the id of one of the COLLECTIONS below.
 // `stripeLink` is the older single-item payment link, kept as a fallback.
@@ -17,6 +18,7 @@ const PRODUCTS = [
   {
     id: "the-protector",
     type: "necklace",
+    sku: "COS-NK-01",
     stripePriceId: "price_1UQpAAJFPFLF0cf3CF9Qveql",
     stock: 1,
     oneOfAKind: true,
@@ -32,6 +34,7 @@ const PRODUCTS = [
   {
     id: "the-queen",
     type: "necklace",
+    sku: "COS-NK-02",
     collection: "golden-hour",
     stripePriceId: "price_1UQp1MJFPFLF0cf36HVBHpp2",
     stock: 1,
@@ -48,6 +51,7 @@ const PRODUCTS = [
   {
     id: "the-sister",
     type: "necklace",
+    sku: "COS-NK-03",
     collection: "golden-hour",
     stripePriceId: "price_1URCm8JFPFLF0cf3rc21RoCi",
     stock: 1,
@@ -64,6 +68,7 @@ const PRODUCTS = [
   {
     id: "the-harvest",
     type: "bracelet",
+    sku: "COS-BR-01",
     collection: "golden-hour",
     stripePriceId: "price_1URD99JFPFLF0cf3oof44Zr5",
     stock: 3,
@@ -78,6 +83,7 @@ const PRODUCTS = [
   {
     id: "the-forage",
     type: "bracelet",
+    sku: "COS-BR-02",
     collection: "golden-hour",
     stripePriceId: "price_1URD1jJFPFLF0cf3AJXgrvGR",
     stock: 2,
@@ -92,6 +98,7 @@ const PRODUCTS = [
   {
     id: "the-dewdrop",
     type: "bracelet",
+    sku: "COS-BR-03",
     collection: "moonlit",
     stripePriceId: "price_1URppCJFPFLF0cf3s84Izod9",
     stock: 4,
@@ -106,6 +113,7 @@ const PRODUCTS = [
   {
     id: "the-wisp",
     type: "bracelet",
+    sku: "COS-BR-04",
     collection: "moonlit",
     stripePriceId: "price_1URpudJFPFLF0cf3RoYvWnBj",
     stock: 3,
@@ -119,6 +127,7 @@ const PRODUCTS = [
   {
     id: "the-prism",
     type: "bracelet",
+    sku: "COS-BR-05",
     collection: "moonlit",
     stripePriceId: "price_1URq12JFPFLF0cf3ePU8lAuE",
     stock: 2,
@@ -132,6 +141,7 @@ const PRODUCTS = [
   {
     id: "the-tide",
     type: "bracelet",
+    sku: "COS-BR-06",
     collection: "moonlit",
     stripePriceId: "price_1URq5dJFPFLF0cf3Iv4h4n8Q",
     stock: 2,
@@ -145,6 +155,7 @@ const PRODUCTS = [
   {
     id: "the-bluebell",
     type: "bracelet",
+    sku: "COS-BR-07",
     collection: "moonlit",
     stripePriceId: "price_1URq8DJFPFLF0cf3P2aDqPY3",
     stock: 2,
@@ -158,6 +169,7 @@ const PRODUCTS = [
   {
     id: "the-frost",
     type: "bracelet",
+    sku: "COS-BR-08",
     collection: "moonlit",
     stripePriceId: "price_1URqBEJFPFLF0cf3qPr8W7Ht",
     stock: 1,
@@ -171,6 +183,7 @@ const PRODUCTS = [
   {
     id: "the-lagoon",
     type: "bracelet",
+    sku: "COS-BR-09",
     collection: "moonlit",
     stripePriceId: "price_1URqEmJFPFLF0cf3N7yry09Z",
     stock: 3,
@@ -184,6 +197,7 @@ const PRODUCTS = [
   {
     id: "the-coquette",
     type: "necklace",
+    sku: "COS-NK-04",
     collection: "moonlit",
     stripePriceId: "price_1URqLVJFPFLF0cf3aW1jzA6D",
     stock: 1,
@@ -199,6 +213,7 @@ const PRODUCTS = [
   {
     id: "the-enchantress",
     type: "necklace",
+    sku: "COS-NK-05",
     collection: "moonlit",
     stripePriceId: "price_1URqRbJFPFLF0cf3VSeGxtya",
     stock: 1,
@@ -214,6 +229,7 @@ const PRODUCTS = [
   {
     id: "the-muse",
     type: "necklace",
+    sku: "COS-NK-06",
     collection: "moonlit",
     stripePriceId: "price_1URqTuJFPFLF0cf3xYmOXrVG",
     stock: 1,

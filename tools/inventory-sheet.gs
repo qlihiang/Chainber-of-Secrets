@@ -18,8 +18,8 @@ var SITE = "https://chainberofsecrets.com";
 var SHEET_ID = "1sFH4WwR-nhi0zOq8KN1OmB9HHPlzzHApurYsgv0El0A";
 var STOCK_TAB = "Stock take";
 var TX_TAB = "Transactions";
-var TX_HEADERS = ["Date", "Type", "Product", "Change", "Stock after", "Customer", "Amount (SGD)", "Reference", "Key"];
-var STOCK_HEADERS = ["Product", "Type", "Collection", "Price (SGD)", "In stock", "Status"];
+var TX_HEADERS = ["Date", "Type", "SKU", "Product", "Change", "Stock after", "Customer", "Amount (SGD)", "Reference", "Key"];
+var STOCK_HEADERS = ["SKU", "Product", "Type", "Collection", "Price (SGD)", "In stock", "Status"];
 
 function ss_() {
   return SpreadsheetApp.getActive() || SpreadsheetApp.openById(SHEET_ID);
@@ -62,7 +62,7 @@ function setUp() {
   if (data && tx.getLastRow() === 1) {
     var now = new Date();
     data.products.forEach(function (p) {
-      addTx_(tx, now, "Opening stock", p.name, p.stock, p.stock, "", "", "Stock take", "open:" + p.id);
+      addTx_(tx, now, "Opening stock", p.sku, p.name, p.stock, p.stock, "", "", "Stock take", "open:" + p.id);
     });
   }
   try { ss.setActiveSheet(ss.getSheetByName(STOCK_TAB)); } catch (err) {}
@@ -80,13 +80,15 @@ function refreshStockTake() {
   if (res.getResponseCode() !== 200) return null;
   var data = JSON.parse(res.getContentText());
   var sh = sheet_(STOCK_TAB, STOCK_HEADERS);
+  sh.getRange(1, 1, 1, STOCK_HEADERS.length).setValues([STOCK_HEADERS]).setFontWeight("bold");
+  upgradeTransactions_(data.products);
   var rows = data.products.map(function (p) {
     var status = p.stock === 0 ? "Sold out" : p.stock <= 1 ? "Last one" : p.stock <= 3 ? "Low" : "In stock";
-    return [p.name, cap_(p.type), titleCase_(p.collection), p.price, p.stock, status];
+    return [p.sku || "", p.name, cap_(p.type), titleCase_(p.collection), p.price, p.stock, status];
   });
   if (sh.getLastRow() > 1) sh.getRange(2, 1, sh.getLastRow() - 1, STOCK_HEADERS.length).clearContent();
   if (rows.length) sh.getRange(2, 1, rows.length, STOCK_HEADERS.length).setValues(rows);
-  var total = rows.reduce(function (n, r) { return n + r[4]; }, 0);
+  var total = rows.reduce(function (n, r) { return n + r[5]; }, 0);
   sh.getRange(rows.length + 3, 1, 2, 2).setValues([
     ["Total pieces in stock", total],
     ["Last updated", new Date()],
@@ -105,6 +107,7 @@ function doPost(e) {
   lock.waitLock(20000);
   try {
     var tx = sheet_(TX_TAB, TX_HEADERS);
+    if (tx.getRange(1, 3).getValue() !== "SKU") refreshStockTake(); // older layout: add SKU column first
     var keyCol = TX_HEADERS.length;
     var existing = {};
     if (tx.getLastRow() > 1) {
@@ -115,11 +118,11 @@ function doPost(e) {
       var key = r.order + ":" + r.productId;
       if (existing[key]) return; // already recorded (Stripe sometimes sends twice)
       if (body.kind === "sale") {
-        addTx_(tx, date, "Sale", r.product, -r.qty, r.stockAfter, body.customer || "", r.amount, r.order, key);
+        addTx_(tx, date, "Sale", r.sku || "", r.product, -r.qty, r.stockAfter, body.customer || "", r.amount, r.order, key);
       } else if (body.kind === "adjustment") {
         var change = r.from == null || r.stockAfter == null ? "" : r.stockAfter - r.from;
         var label = change === "" ? "Stock set in Stripe" : change > 0 ? "Restock" : "Stock correction";
-        addTx_(tx, date, label, r.product, change, r.stockAfter, "", "", "Edited in Stripe", key);
+        addTx_(tx, date, label, r.sku || "", r.product, change, r.stockAfter, "", "", "Edited in Stripe", key);
       }
       existing[key] = true;
     });
@@ -134,6 +137,23 @@ function doGet() {
   return json_({ ok: true, note: "Chainber inventory sheet is listening." });
 }
 
+// Sheets made before SKUs existed: add an SKU column to Transactions (after Type)
+// and fill it in for the rows already there, matched by product name. Safe to repeat.
+function upgradeTransactions_(products) {
+  var tx = ss_().getSheetByName(TX_TAB);
+  if (!tx || tx.getLastRow() === 0) return;
+  if (tx.getRange(1, 3).getValue() === "SKU") return;
+  tx.insertColumnAfter(2);
+  tx.getRange(1, 3).setValue("SKU").setFontWeight("bold");
+  var skuByName = {};
+  products.forEach(function (p) { skuByName[p.name] = p.sku || ""; });
+  var n = tx.getLastRow() - 1;
+  if (n > 0) {
+    var names = tx.getRange(2, 4, n, 1).getValues();
+    tx.getRange(2, 3, n, 1).setValues(names.map(function (r) { return [skuByName[r[0]] || ""]; }));
+  }
+}
+
 // ---- helpers --------------------------------------------------------------
 
 function sheet_(name, headers) {
@@ -146,8 +166,8 @@ function sheet_(name, headers) {
   return sh;
 }
 
-function addTx_(sh, date, type, product, change, stockAfter, customer, amount, ref, key) {
-  sh.appendRow([date, type, product, change, stockAfter, customer, amount, ref, key]);
+function addTx_(sh, date, type, sku, product, change, stockAfter, customer, amount, ref, key) {
+  sh.appendRow([date, type, sku, product, change, stockAfter, customer, amount, ref, key]);
 }
 
 function json_(obj) {

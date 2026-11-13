@@ -16,7 +16,7 @@ module.exports = async function handler(req, res) {
     res.setHeader("Cache-Control", "public, max-age=0, s-maxage=20, stale-while-revalidate=60");
     // `products` is for the inventory sheet's "Stock take" tab.
     const products = PRODUCTS.map((p) => ({
-      id: p.id, name: p.name, type: p.type, collection: p.collection || "", price: p.price, stock: stock[p.id],
+      id: p.id, sku: p.sku || "", name: p.name, type: p.type, collection: p.collection || "", price: p.price, stock: stock[p.id],
     }));
     return res.status(200).json({ stock, products, updated: new Date().toISOString() });
   } catch (err) {

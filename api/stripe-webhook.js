@@ -173,6 +173,7 @@ async function handler(req, res) {
       sales.push({
         order: session.id,
         productId: site?.id || productId,
+        sku: site?.sku || "",
         product: site?.name || li.description || productId,
         qty: li.quantity || 1,
         amount: (li.amount_total ?? 0) / 100,
@@ -214,6 +215,7 @@ async function handleProductUpdated(event, res) {
       rows: [{
         order: event.id,
         productId: site?.id || product.id,
+        sku: site?.sku || "",
         product: site?.name || product.name || product.id,
         from: parseStock(before.stock),
         stockAfter: parseStock(product.metadata?.stock),

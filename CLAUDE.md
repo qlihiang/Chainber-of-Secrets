@@ -27,7 +27,7 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
   `/api/stock`, refreshed hourly and after each sale) and "Transactions". The webhook posts
   sales and Stripe-side stock edits (`product.updated`) via `api/_sheet.js` when
   `INVENTORY_SHEET_URL` and `INVENTORY_SHEET_TOKEN` are set in Vercel.
-- Per product in `products.js`: `stripePriceId`, `stock` (starting number only),
+- Per product in `products.js`: `sku` (COS-NK-.. / COS-BR-.., never reused), `stripePriceId`, `stock` (starting number only),
   `oneOfAKind` (label + one per order), optional `maxPerOrder`.
 - Live stock (`api/_stock.js`): the count lives in each Stripe product's `stock` metadata
   (falls back to `products.js` until set). The webhook lowers it after each paid order
