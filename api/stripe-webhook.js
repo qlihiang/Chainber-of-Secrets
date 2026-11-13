@@ -1,15 +1,21 @@
-// Runs when an order is paid: counts the stock down and emails the shop.
+// Runs when an order is paid: counts the stock down, records it, and emails the shop.
 // Stripe calls this after checkout (webhook events checkout.session.completed and
 // checkout.session.async_payment_succeeded). It looks up what was bought, lowers each
-// product's "stock" in Stripe (see _stock.js), then, if email is set up, sends an
-// order summary to the shop's Gmail through Resend.
+// product's "stock" in Stripe (see _stock.js), records the sale in the inventory
+// Google Sheet if set up (see _sheet.js), then, if email is set up, sends an order
+// summary to the shop's Gmail through Resend.
+// It also listens for product.updated, so a stock number changed by hand in Stripe
+// (a restock) is recorded in the sheet too.
 // Environment variables in Vercel:
 //   STRIPE_SECRET_KEY      (already used by checkout; needs Products: Write)
 //   STRIPE_WEBHOOK_SECRET  (whsec_..., from the webhook endpoint in Stripe)
 //   RESEND_API_KEY         (optional, re_..., from resend.com; no key = no email)
+//   INVENTORY_SHEET_URL, INVENTORY_SHEET_TOKEN (optional; the sheet's web app)
 
 const crypto = require("crypto");
-const { stripe, decrementStock } = require("./_stock.js");
+const { PRODUCTS } = require("../products.js");
+const { stripe, parseStock, decrementStock } = require("./_stock.js");
+const { logToSheet } = require("./_sheet.js");
 
 const ORDER_EMAIL_TO = "chainberofsecrets@gmail.com";
 // Resend's shared sender only delivers to the Resend account's own address,
@@ -145,6 +151,7 @@ async function handler(req, res) {
   }
 
   const event = JSON.parse(rawBody.toString("utf8"));
+  if (event.type === "product.updated") return handleProductUpdated(event, res);
   const session = event.data?.object;
   // Card payments are paid on "completed"; delayed methods (e.g. PayNow) arrive later
   // as "async_payment_succeeded". Email once, when the money is actually in.
@@ -157,10 +164,29 @@ async function handler(req, res) {
     const lineItems = items.data || [];
 
     // Stock first: if anything fails, Stripe retries and already-counted products are skipped.
+    const sales = [];
     for (const li of lineItems) {
       const productId = typeof li.price?.product === "string" ? li.price.product : li.price?.product?.id;
-      if (productId) await decrementStock(productId, li.price.id, li.quantity || 1, session.id, STRIPE_SECRET_KEY);
+      if (!productId) continue;
+      const stockAfter = await decrementStock(productId, li.price.id, li.quantity || 1, session.id, STRIPE_SECRET_KEY);
+      const site = PRODUCTS.find((p) => p.stripePriceId === li.price.id);
+      sales.push({
+        order: session.id,
+        productId: site?.id || productId,
+        product: site?.name || li.description || productId,
+        qty: li.quantity || 1,
+        amount: (li.amount_total ?? 0) / 100,
+        stockAfter,
+      });
     }
+
+    // Then the sheet (it ignores rows it already has, so retries don't duplicate).
+    await logToSheet({
+      kind: "sale",
+      date: new Date((session.created || Date.now() / 1000) * 1000).toISOString(),
+      customer: session.customer_details?.name || "",
+      rows: sales,
+    });
 
     if (!RESEND_API_KEY) return res.status(200).json({ received: true, stock: true, emailed: false });
     await sendEmail(orderEmail(session, lineItems), RESEND_API_KEY);
@@ -169,6 +195,46 @@ async function handler(req, res) {
     // A non-2xx reply makes Stripe retry the webhook later.
     console.error("order webhook failed:", err.message);
     return res.status(500).json({ error: "Order processing failed." });
+  }
+}
+
+// A stock number changed by hand in Stripe (a restock or correction) goes to the sheet.
+// The site's own sale updates also change "stock_orders"; those are already recorded.
+async function handleProductUpdated(event, res) {
+  const product = event.data?.object;
+  const before = event.data?.previous_attributes?.metadata;
+  if (!product || !before || !("stock" in before) || "stock_orders" in before) {
+    return res.status(200).json({ received: true, recorded: false });
+  }
+  const site = await siteProductFor(product.id);
+  try {
+    await logToSheet({
+      kind: "adjustment",
+      date: new Date((event.created || Date.now() / 1000) * 1000).toISOString(),
+      rows: [{
+        order: event.id,
+        productId: site?.id || product.id,
+        product: site?.name || product.name || product.id,
+        from: parseStock(before.stock),
+        stockAfter: parseStock(product.metadata?.stock),
+      }],
+    });
+    return res.status(200).json({ received: true, recorded: true });
+  } catch (err) {
+    console.error("inventory sheet failed:", err.message);
+    return res.status(500).json({ error: "Recording failed." });
+  }
+}
+
+// Which site product a Stripe product belongs to (through its prices).
+async function siteProductFor(stripeProductId) {
+  try {
+    const { STRIPE_SECRET_KEY } = process.env;
+    const prices = await stripe(`/prices?product=${encodeURIComponent(stripeProductId)}&limit=100`, STRIPE_SECRET_KEY);
+    const ids = new Set((prices.data || []).map((p) => p.id));
+    return PRODUCTS.find((p) => ids.has(p.stripePriceId)) || null;
+  } catch {
+    return null;
   }
 }
 

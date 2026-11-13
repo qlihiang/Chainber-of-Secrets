@@ -22,6 +22,11 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
   `RESEND_API_KEY` is set) emails an order summary to chainberofsecrets@gmail.com.
   Needs `STRIPE_WEBHOOK_SECRET` in Vercel (never in the repo); the endpoint is
   https://chainberofsecrets.com/api/stripe-webhook.
+- Inventory Google Sheet: `tools/inventory-sheet.gs` is an Apps Script pasted into the
+  owner's sheet (not deployed; `.vercelignore` skips `tools/`). Tabs "Stock take" (from
+  `/api/stock`, refreshed hourly and after each sale) and "Transactions". The webhook posts
+  sales and Stripe-side stock edits (`product.updated`) via `api/_sheet.js` when
+  `INVENTORY_SHEET_URL` and `INVENTORY_SHEET_TOKEN` are set in Vercel.
 - Per product in `products.js`: `stripePriceId`, `stock` (starting number only),
   `oneOfAKind` (label + one per order), optional `maxPerOrder`.
 - Live stock (`api/_stock.js`): the count lives in each Stripe product's `stock` metadata
