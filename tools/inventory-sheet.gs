@@ -2,7 +2,8 @@
  * Chainber of Secrets: inventory record (Google Apps Script for the inventory sheet).
  *
  * Paste this into the sheet: Extensions > Apps Script, replace everything, Save.
- * Then run setUp once (it asks for permission and shows the token for Vercel),
+ * Then pick setUp next to Run and click Run (not Debug) once; it asks for permission
+ * and prints the token for Vercel in the Execution log,
  * and deploy it as a web app (Deploy > New deployment > Web app,
  * Execute as: Me, Who has access: Anyone).
  *
@@ -24,13 +25,12 @@ function ss_() {
   return SpreadsheetApp.getActive() || SpreadsheetApp.openById(SHEET_ID);
 }
 
-// Pop-up when run from the sheet; otherwise the message goes to the Execution log.
+// Shows a message without waiting for anyone: in the Execution log (below the code
+// in the Apps Script editor) and as a brief notice in the sheet. A pop-up would make
+// the script wait for a click in the sheet's tab and time out.
 function tell_(title, message) {
-  try {
-    SpreadsheetApp.getUi().alert(title, message, SpreadsheetApp.getUi().ButtonSet.OK);
-  } catch (err) {
-    Logger.log(title + ": " + message);
-  }
+  Logger.log(title + ": " + message);
+  try { ss_().toast(message, title, 30); } catch (err) {}
 }
 
 function onOpen() {
