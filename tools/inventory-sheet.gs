@@ -12,10 +12,26 @@
  */
 
 var SITE = "https://chainberofsecrets.com";
+// The inventory sheet, so the script works whether it was opened from the sheet
+// (Extensions > Apps Script) or created separately at script.google.com.
+var SHEET_ID = "1sFH4WwR-nhi0zOq8KN1OmB9HHPlzzHApurYsgv0El0A";
 var STOCK_TAB = "Stock take";
 var TX_TAB = "Transactions";
 var TX_HEADERS = ["Date", "Type", "Product", "Change", "Stock after", "Customer", "Amount (SGD)", "Reference", "Key"];
 var STOCK_HEADERS = ["Product", "Type", "Collection", "Price (SGD)", "In stock", "Status"];
+
+function ss_() {
+  return SpreadsheetApp.getActive() || SpreadsheetApp.openById(SHEET_ID);
+}
+
+// Pop-up when run from the sheet; otherwise the message goes to the Execution log.
+function tell_(title, message) {
+  try {
+    SpreadsheetApp.getUi().alert(title, message, SpreadsheetApp.getUi().ButtonSet.OK);
+  } catch (err) {
+    Logger.log(title + ": " + message);
+  }
+}
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -29,7 +45,7 @@ function onOpen() {
 
 // First-time setup: tabs, headers, hourly refresh, token, and an opening-stock record.
 function setUp() {
-  var ss = SpreadsheetApp.getActive();
+  var ss = ss_();
   var tx = sheet_(TX_TAB, TX_HEADERS);
   sheet_(STOCK_TAB, STOCK_HEADERS);
   tx.hideColumns(TX_HEADERS.length); // the Key column is only for skipping duplicates
@@ -49,17 +65,13 @@ function setUp() {
       addTx_(tx, now, "Opening stock", p.name, p.stock, p.stock, "", "", "Stock take", "open:" + p.id);
     });
   }
-  ss.setActiveSheet(ss.getSheetByName(STOCK_TAB));
+  try { ss.setActiveSheet(ss.getSheetByName(STOCK_TAB)); } catch (err) {}
   showToken();
 }
 
 function showToken() {
   var token = PropertiesService.getScriptProperties().getProperty("TOKEN") || "Run 'Set up' first.";
-  SpreadsheetApp.getUi().alert(
-    "Token for Vercel",
-    "Add this in Vercel as INVENTORY_SHEET_TOKEN (Secret):\n\n" + token,
-    SpreadsheetApp.getUi().ButtonSet.OK
-  );
+  tell_("Token for Vercel", "Add this in Vercel as INVENTORY_SHEET_TOKEN (Secret):\n\n" + token);
 }
 
 // Rewrites the Stock take tab from the live numbers on the website.
@@ -125,7 +137,7 @@ function doGet() {
 // ---- helpers --------------------------------------------------------------
 
 function sheet_(name, headers) {
-  var ss = SpreadsheetApp.getActive();
+  var ss = ss_();
   var sh = ss.getSheetByName(name) || ss.insertSheet(name);
   if (sh.getLastRow() === 0) {
     sh.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight("bold");
