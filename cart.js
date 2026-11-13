@@ -61,6 +61,25 @@ const Cart = (() => {
   };
 })();
 
+// ---- Live stock -----------------------------------------------------------
+// The numbers in products.js are a starting point; the real count lives in Stripe
+// and goes down by itself after each sale. Fetch it once per page and tell the
+// page to redraw ("stock-updated"). If it can't be fetched, products.js is used.
+
+(function loadLiveStock() {
+  if (!/^https?:$/.test(location.protocol)) return;
+  fetch("/api/stock")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      if (!data?.stock) return;
+      for (const p of PRODUCTS) {
+        if (Number.isInteger(data.stock[p.id])) p.stock = data.stock[p.id];
+      }
+      window.dispatchEvent(new Event("stock-updated"));
+    })
+    .catch(() => {});
+})();
+
 // ---- Cart panel UI -------------------------------------------------------
 
 (function setUpCartUI() {
@@ -186,6 +205,7 @@ const Cart = (() => {
 
   Cart.onChange(render);
   window.addEventListener("storage", render);
+  window.addEventListener("stock-updated", render);
   render();
   window.openCart = open;
 })();

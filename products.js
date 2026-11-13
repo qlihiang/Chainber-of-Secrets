@@ -2,8 +2,10 @@
 // `id` appears in the product page link (product.html#id), so keep it lowercase with dashes.
 // `stripePriceId` is the product's Price ID from Stripe (starts with "price_"); the
 // checkout uses Stripe's price, so the amount here is only for display.
-// `stock` is how many are available: 0 shows "Sold out"; 1-3 shows "Only N left".
-//   Update it by hand after a sale (the site doesn't count sales automatically).
+// `stock` is the STARTING number: 0 shows "Sold out"; 1-3 shows "Only N left".
+//   The live count is kept in Stripe (the product's "stock" metadata) and goes down
+//   by itself after each paid order. Once Stripe has a number, it wins over this one;
+//   to restock, edit the product's "stock" metadata in the Stripe Dashboard.
 // `oneOfAKind: true` labels a unique piece "One of a kind" (use with stock: 1).
 // `maxPerOrder` (optional) caps how many one customer can buy, e.g. 2.
 // `images` (optional) lists extra photos for the product page gallery, main photo first;

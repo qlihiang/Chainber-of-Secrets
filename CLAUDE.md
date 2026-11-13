@@ -18,12 +18,17 @@ Hosted on Vercel at https://chainberofsecrets.com, auto-deployed from `main` on 
   shipping rule in `SHOP`, and creates a Stripe Checkout Session (SGD, Singapore only).
 - `success.html`: thank-you page after payment; clears the cart.
 - `api/stripe-webhook.js`: Stripe webhook (checkout.session.completed and
-  checkout.session.async_payment_succeeded) that emails an order summary to
-  chainberofsecrets@gmail.com via Resend. Needs `STRIPE_WEBHOOK_SECRET` and
-  `RESEND_API_KEY` in Vercel (never in the repo); the webhook endpoint is
+  checkout.session.async_payment_succeeded): counts stock down, then (only if
+  `RESEND_API_KEY` is set) emails an order summary to chainberofsecrets@gmail.com.
+  Needs `STRIPE_WEBHOOK_SECRET` in Vercel (never in the repo); the endpoint is
   https://chainberofsecrets.com/api/stripe-webhook.
-- Per product in `products.js`: `stripePriceId`, `stock` (0 = sold out; update by hand after
-  sales), `oneOfAKind` (label + one per order), optional `maxPerOrder`.
+- Per product in `products.js`: `stripePriceId`, `stock` (starting number only),
+  `oneOfAKind` (label + one per order), optional `maxPerOrder`.
+- Live stock (`api/_stock.js`): the count lives in each Stripe product's `stock` metadata
+  (falls back to `products.js` until set). The webhook lowers it after each paid order
+  (skipping orders already counted, kept in `stock_orders` metadata); checkout re-checks it;
+  `api/stock.js` serves it and `cart.js` applies it on every page ("stock-updated" event).
+  Restock = edit the product's `stock` metadata in Stripe. The Stripe key needs Products: Write.
 - Shop filters on the homepage: each product has `type` (necklace/bracelet) and optional
   `collection` (an id from `COLLECTIONS` in `products.js`). Filters live in the URL,
   e.g. `index.html?type=necklace#collection`. The collection row appears once a collection exists.

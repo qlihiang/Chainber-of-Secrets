@@ -63,6 +63,7 @@ if (grid) {
     render();
   });
   render();
+  window.addEventListener("stock-updated", render);
 }
 
 const toggle = document.querySelector(".menu-toggle");

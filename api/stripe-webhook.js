@@ -1,13 +1,15 @@
-// Emails the shop when an order is paid.
+// Runs when an order is paid: counts the stock down and emails the shop.
 // Stripe calls this after checkout (webhook events checkout.session.completed and
-// checkout.session.async_payment_succeeded); it looks up what was bought and sends
-// an order summary to the shop's Gmail through Resend.
-// Needs these environment variables in Vercel:
-//   STRIPE_SECRET_KEY      (already used by checkout)
+// checkout.session.async_payment_succeeded). It looks up what was bought, lowers each
+// product's "stock" in Stripe (see _stock.js), then, if email is set up, sends an
+// order summary to the shop's Gmail through Resend.
+// Environment variables in Vercel:
+//   STRIPE_SECRET_KEY      (already used by checkout; needs Products: Write)
 //   STRIPE_WEBHOOK_SECRET  (whsec_..., from the webhook endpoint in Stripe)
-//   RESEND_API_KEY         (re_..., from resend.com)
+//   RESEND_API_KEY         (optional, re_..., from resend.com; no key = no email)
 
 const crypto = require("crypto");
+const { stripe, decrementStock } = require("./_stock.js");
 
 const ORDER_EMAIL_TO = "chainberofsecrets@gmail.com";
 // Resend's shared sender only delivers to the Resend account's own address,
@@ -112,12 +114,6 @@ function orderEmail(session, lineItems) {
   return { subject, html, replyTo: customer.email };
 }
 
-async function stripeGet(path, key) {
-  const r = await fetch(`https://api.stripe.com/v1${path}`, { headers: { Authorization: `Bearer ${key}` } });
-  const data = await r.json();
-  if (!r.ok) throw new Error(data.error?.message || `Stripe error ${r.status}`);
-  return data;
-}
 
 async function sendEmail({ subject, html, replyTo }, key) {
   const r = await fetch("https://api.resend.com/emails", {
@@ -138,8 +134,8 @@ async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Use POST." });
 
   const { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, RESEND_API_KEY } = process.env;
-  if (!STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET || !RESEND_API_KEY) {
-    console.error("order email: missing STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET or RESEND_API_KEY");
+  if (!STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET) {
+    console.error("order webhook: missing STRIPE_SECRET_KEY or STRIPE_WEBHOOK_SECRET");
     return res.status(500).json({ error: "Not configured." });
   }
 
@@ -154,16 +150,25 @@ async function handler(req, res) {
   // as "async_payment_succeeded". Email once, when the money is actually in.
   const paidNow = event.type === "checkout.session.completed" && session?.payment_status !== "unpaid";
   const paidLater = event.type === "checkout.session.async_payment_succeeded";
-  if (!paidNow && !paidLater) return res.status(200).json({ received: true, emailed: false });
+  if (!paidNow && !paidLater) return res.status(200).json({ received: true, stock: false, emailed: false });
 
   try {
-    const items = await stripeGet(`/checkout/sessions/${encodeURIComponent(session.id)}/line_items?limit=100`, STRIPE_SECRET_KEY);
-    await sendEmail(orderEmail(session, items.data || []), RESEND_API_KEY);
-    return res.status(200).json({ received: true, emailed: true });
+    const items = await stripe(`/checkout/sessions/${encodeURIComponent(session.id)}/line_items?limit=100`, STRIPE_SECRET_KEY);
+    const lineItems = items.data || [];
+
+    // Stock first: if anything fails, Stripe retries and already-counted products are skipped.
+    for (const li of lineItems) {
+      const productId = typeof li.price?.product === "string" ? li.price.product : li.price?.product?.id;
+      if (productId) await decrementStock(productId, li.price.id, li.quantity || 1, session.id, STRIPE_SECRET_KEY);
+    }
+
+    if (!RESEND_API_KEY) return res.status(200).json({ received: true, stock: true, emailed: false });
+    await sendEmail(orderEmail(session, lineItems), RESEND_API_KEY);
+    return res.status(200).json({ received: true, stock: true, emailed: true });
   } catch (err) {
     // A non-2xx reply makes Stripe retry the webhook later.
-    console.error("order email failed:", err.message);
-    return res.status(500).json({ error: "Order email failed." });
+    console.error("order webhook failed:", err.message);
+    return res.status(500).json({ error: "Order processing failed." });
   }
 }
 

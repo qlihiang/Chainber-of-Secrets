@@ -2,7 +2,8 @@
 // Prices always come from Stripe (by Price ID), never from the browser.
 // Needs the STRIPE_SECRET_KEY environment variable set in Vercel.
 
-const { PRODUCTS, SHOP, maxPerCustomer } = require("../products.js");
+const { PRODUCTS, SHOP } = require("../products.js");
+const { getProductStock } = require("./_stock.js");
 
 const STRIPE_API = "https://api.stripe.com/v1";
 
@@ -41,21 +42,28 @@ module.exports = async function handler(req, res) {
     const product = PRODUCTS.find((p) => p.id === item?.id);
     const qty = Number.parseInt(item?.qty, 10);
     if (!product) return fail(res, 400, "One of the items is no longer available.");
-    if (maxPerCustomer(product) < 1) return fail(res, 409, `${product.name} has sold out.`);
     if (!product.stripePriceId) return fail(res, 409, `${product.name} isn't available to buy yet.`);
-    if (!Number.isInteger(qty) || qty < 1 || qty > maxPerCustomer(product)) {
+    if (!Number.isInteger(qty) || qty < 1) {
       return fail(res, 400, `Please check the quantity for ${product.name}.`);
     }
     lines.push({ product, qty });
   }
 
   try {
-    // Look up each price in Stripe to get the real amount for the shipping rule.
+    // Look up each price (and its live stock) in Stripe: the real amount feeds the
+    // shipping rule, and the stock stops anyone buying a piece that has just sold.
     let subtotal = 0;
     for (const line of lines) {
-      const price = await stripeRequest(`/prices/${encodeURIComponent(line.product.stripePriceId)}`, key);
+      const { price, stock } = await getProductStock(line.product, key);
       if (!price.active || price.currency !== SHOP.currency) {
         return fail(res, 409, `${line.product.name} isn't available to buy right now.`);
+      }
+      const max = line.product.maxPerOrder ? Math.min(stock, line.product.maxPerOrder) : stock;
+      if (max < 1) return fail(res, 409, `${line.product.name} has sold out.`);
+      if (line.qty > max) {
+        return fail(res, 409, max === 1
+          ? `Only one ${line.product.name} is available.`
+          : `Only ${max} of ${line.product.name} are available.`);
       }
       subtotal += price.unit_amount * line.qty;
     }

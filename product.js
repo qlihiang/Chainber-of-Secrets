@@ -13,8 +13,15 @@ function renderProduct() {
 
   document.getElementById("pdp-buy").dataset.id = product.id;
   updateBuyButton();
+  renderMore();
 
-  const others = PRODUCTS.filter((p) => p.id !== product.id);
+  window.scrollTo(0, 0);
+}
+
+// "You may also like": every other piece, with a Sold out badge where needed.
+function renderMore() {
+  const current = document.getElementById("pdp-buy").dataset.id;
+  const others = PRODUCTS.filter((p) => p.id !== current);
   document.querySelector(".more").hidden = others.length === 0;
   document.getElementById("more-grid").innerHTML = others.map((p) => `
     <a href="product.html#${p.id}" class="product">
@@ -27,8 +34,6 @@ function renderProduct() {
       <p class="price">${formatPrice(p.price)}</p>
     </a>
   `).join("");
-
-  window.scrollTo(0, 0);
 }
 
 // Photo gallery: swipe (or scroll) through the photos; thumbnails jump to one.
@@ -117,3 +122,7 @@ Cart.onChange(updateBuyButton);
 
 renderProduct();
 window.addEventListener("hashchange", renderProduct);
+window.addEventListener("stock-updated", () => {
+  updateBuyButton();
+  renderMore();
+});
